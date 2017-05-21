@@ -9,17 +9,13 @@
     <link rel="icon" href="../../favicon.ico">
  
     <title>Narrow Jumbotron Template for Bootstrap</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="narrow-jumbotron.css" rel="stylesheet">
+    
 
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/dt-1.10.15/r-2.1.1/datatables.min.css"/>
      
-    <script type="text/javascript" src="https://cdn.datatables.net/v/bs/dt-1.10.15/r-2.1.1/datatables.min.js"></script>    
-    
+ 
+
+
   </head>
 
   <body>
@@ -48,7 +44,7 @@
         <p><a class="btn btn-lg btn-success" href="/productos" role="button">Ver Listado Productos</a></p>
       </div>
 
-      <table class="table table-hover table-striped">
+      <table id="tabla_productos" class="table table-hover table-striped">
         <thead>
           <tr>
             <th>ID</th>
@@ -56,8 +52,8 @@
             <th>Descripcion</th>
             <th>Stock Fisisco</th>
             <th>Stock Disponible</th>
-<!--             <th>Informacion</th>
-            <th>Reservar</t -->h>
+            <th></th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -83,10 +79,16 @@
 
     </div> <!-- /container -->
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs/dt-1.10.15/r-2.1.1/datatables.min.js"></script>       
+
+
+    <script type="text/javascript">
+      
+      $(document).ready(function() {
+          $('#tabla_productos').DataTable({
+            "dom": "f"
+          });
+      } );      
+    </script>
   </body>
 </html>
