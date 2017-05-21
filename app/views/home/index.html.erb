@@ -40,24 +40,24 @@
       <div class="jumbotron">
         <h1 class="display-3">Bienvenido al Sistema Pañol</h1>
         <p class="lead">Desde aca podras hacer busquedas de materiales, genrar y manejar reservas y mucho mas</p>
-        <p><a class="btn btn-lg btn-success" href="/productos" role="button">Ver Listado Productos</a></p>
+        <p><a class="btn btn-lg btn-success" href="/products" role="button">Ver Listado Productos</a></p>
       </div>
 
       <div class="row marketing">
         <div class="col-lg-6">
-          <% @productos1.each do |producto| %>
+          <% @products1.each do |product| %>
           
-            <h4><%= producto.nombre %></h4>
-            <p><%= producto.descripcion  %></p>          
+            <h4><%= product.nombre %></h4>
+            <p><%= product.descripcion  %></p>          
           <% end %>
 
         </div>
 
         <div class="col-lg-6">
-          <% @productos2.each do |producto| %>
+          <% @products2.each do |product| %>
           
-            <h4><%= producto.nombre %></h4>
-            <p><%= producto.descripcion %></p>          
+            <h4><%= product.nombre %></h4>
+            <p><%= product.descripcion %></p>          
           <% end %>
 
         </div>

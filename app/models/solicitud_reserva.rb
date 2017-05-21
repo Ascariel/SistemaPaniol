@@ -1,0 +1,2 @@
+class SolicitudReserva < ApplicationRecord
+end

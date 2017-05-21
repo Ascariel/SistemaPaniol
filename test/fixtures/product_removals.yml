@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  fecha_eliminacion: 2017-05-21 19:11:58
+  product_detail_id: 1
+  observaciones: MyString
+
+two:
+  fecha_eliminacion: 2017-05-21 19:11:58
+  product_detail_id: 1
+  observaciones: MyString

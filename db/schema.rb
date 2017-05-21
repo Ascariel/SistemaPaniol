@@ -10,14 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170520215111) do
-
-  create_table "categoria", force: :cascade do |t|
-    t.string   "nombre"
-    t.string   "descripcion"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
+ActiveRecord::Schema.define(version: 20170521231158) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "nombre"
@@ -26,7 +19,23 @@ ActiveRecord::Schema.define(version: 20170520215111) do
     t.datetime "updated_at",                                    null: false
   end
 
-  create_table "productos", force: :cascade do |t|
+  create_table "product_details", force: :cascade do |t|
+    t.string   "estado"
+    t.integer  "product_id"
+    t.datetime "fecha_ingreso"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  create_table "product_removals", force: :cascade do |t|
+    t.datetime "fecha_eliminacion"
+    t.integer  "product_detail_id"
+    t.string   "observaciones"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  create_table "products", force: :cascade do |t|
     t.string   "nombre"
     t.string   "descripcion",      default: "Descripcion Producto"
     t.string   "marca",            default: "Marca Producto"
@@ -35,9 +44,35 @@ ActiveRecord::Schema.define(version: 20170520215111) do
     t.integer  "stock_fisico",     default: 20
     t.integer  "stock_disponible", default: 20
     t.string   "estado",           default: "Disponible"
+    t.integer  "dias_prestamo",    default: 5
     t.string   "imagen"
     t.datetime "created_at",                                        null: false
     t.datetime "updated_at",                                        null: false
+  end
+
+  create_table "solicitud_reservas", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "product_id"
+    t.integer  "productos_solicitados"
+    t.integer  "productos_asignados"
+    t.datetime "fecha_inicio"
+    t.datetime "fecha_termino"
+    t.string   "estado"
+    t.boolean  "usar_afuera"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "rut",        default: "rut"
+    t.string   "nombre"
+    t.string   "apellido",   default: "Apellido"
+    t.string   "telefono",   default: "93424562"
+    t.string   "email"
+    t.string   "password"
+    t.string   "rol"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
   end
 
 end
