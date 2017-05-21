@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Narrow Jumbotron Template for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="narrow-jumbotron.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <div class="container">
+      <div class="header clearfix">
+        <nav>
+          <ul class="nav nav-pills float-right">
+            <li class="nav-item">
+              <a class="nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contact</a>
+            </li>
+          </ul>
+        </nav>
+        <h3 class="text-muted">Sistema Pañol Duoc</h3>
+      </div>
+
+      <div class="jumbotron">
+        <h1 class="display-3">Listado de Productos</h1>
+        <p class="lead">Desde aca podras hacer busquedas de materiales, generar y manejar reservas y mucho mas</p>
+        <p><a class="btn btn-lg btn-success" href="/productos" role="button">Ver Listado Productos</a></p>
+      </div>
+
+      <table class="table table-hover table-striped">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Descripcion</th>
+            <th>Stock Fisisco</th>
+            <th>Stock Disponible</th>
+<!--             <th>Informacion</th>
+            <th>Reservar</t -->h>
+          </tr>
+        </thead>
+        <tbody>
+          <% @productos.each do |producto| %>
+            <tr>
+              <td><%= producto.id  %></td>
+              <td><%= producto.nombre %></td>
+              <td><%= producto.descripcion %></td>
+              <td><%= producto.stock_fisico %></td>
+              <td><%= producto.stock_disponible %></td>
+              <td><button class="btn btn-info btn-sm">Ver Detalles</button></td>
+              <td><button class="btn btn-success btn-sm">Reservar</button></td>
+            </tr>
+          <% end %>            
+        </tbody>
+      </table>
+
+
+      <br><br><br>
+      <footer class="footer">
+        <p>&copy; Duoc 2017</p>
+      </footer>
+
+    </div> <!-- /container -->
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+  </body>
+</html>
