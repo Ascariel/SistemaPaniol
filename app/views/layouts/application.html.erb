@@ -4,11 +4,32 @@
     <title>SistemaPaniol</title>
     <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%#= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application'%>
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/dt-1.10.15/r-2.1.1/datatables.min.css"/>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs/dt-1.10.15/r-2.1.1/datatables.min.js"></script>  
+
   </head>
 
   <body>
-    <%= yield %>
+
+
+    <div class="container">
+      <%= render partial: "/layouts/navbars/navbar" %>
+
+      <%= yield %>
+
+      <%= render partial: "/layouts/footer" %>
+
+      <% if content_for?(:javascript) %>
+          <%= yield :javascript %>
+      <% end %>
+
+    </div>
+
+
+
   </body>
 </html>

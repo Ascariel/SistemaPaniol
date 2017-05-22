@@ -1,0 +1,17 @@
+a:not([href]):not([tabindex]){
+  color: #fff
+}
+a:not([href]):not([tabindex]):hover {
+  color: #fff
+}
+a:not([href]):not([tabindex]):focus {
+  color: #fff
+}
+a:not([href]):not([tabindex]):visited {
+  color: #fff
+}
+
+a.btn {
+  text-decoration: none!important;
+  color: #fff
+}

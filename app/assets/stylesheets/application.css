@@ -11,5 +11,37 @@
  * It is generally better to create a new file per style scope.
  *
  *= require_tree .
+ *= require bootstrap_overrides
+ *= require bootstrap.min
+
  *= require_self
  */
+
+
+
+table.dataTable thead .sorting_asc,
+table.dataTable thead .sorting_desc,
+table.dataTable thead .sorting {
+  cursor: pointer;
+  *cursor: hand;
+}
+
+table.dataTable thead th:not(:first-child){
+  min-width: 100px;
+}
+/*
+table.dataTable thead .sorting {
+  background: url("/assets/sort_both.png") no-repeat center right;
+}
+table.dataTable thead .sorting_asc {
+  background: url("/assets/sort_asc.png") no-repeat center right;
+}
+table.dataTable thead .sorting_desc {
+  background: url("/assets/sort_desc.png") no-repeat center right;
+}
+table.dataTable thead .sorting_asc_disabled {
+  background: url("/assets/sort_asc_disabled.png") no-repeat center right;
+}
+table.dataTable thead .sorting_desc_disabled {
+  background: url("/assets/sort_desc_disabled.png") no-repeat center right;
+}*/
