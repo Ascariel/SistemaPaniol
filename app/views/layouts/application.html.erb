@@ -29,6 +29,18 @@
 
     </div>
 
+    <script type="text/javascript">
+      
+      <% if params[:alert] == "reserva_exitosa" %>
+        swal("Reserva Exitosa", "Tu reserva ha sido generada y en unos momentos recibiras un email confirmando si esta fue aprobada", "success")
+      <% elsif params[:alert] == "reserva_cancelada" %>
+        swal("Reserva Cancelada", "Tu reserva ha sido descartada", "warning")
+      <% end %>        
+
+    </script>
+
+
+
 
 
   </body>

@@ -7,45 +7,52 @@
     <p class="lead text-center">Desde aca podras hacer busquedas de materiales, generar y manejar reservas y mucho mas</p>
   </div>
 
+<form action="/solicitud_reservas" method="POST">
+  <%= csrf_meta_tag %>
+  <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>"/>  
   <table id="tabla_products" class="table table-hover table-striped">
+    
     <thead>
       <tr>
         <th>ID</th>
         <th>Nombre</th>
         <th>Descripcion</th>
-        <th>Stock Fisisco</th>
+        <!-- <th>Stock Fisisco</th> -->
         <th>Stock Disponible</th>
         <th>Cantidad a Solicitar</th>
-        <th></th>
-        <th></th>
+        <th>Informacion</th>
       </tr>
     </thead>
     <tbody>
-      <% @products.each do |product| %>
-        <tr>
-          <td><%= product.id  %></td>
-          <td><%= product.nombre %></td>
-          <td><%= product.descripcion %></td>
-          <td><%= product.stock_fisico %></td>
-          <td><%= product.stock_disponible %></td>
-          <td><input value="0" id="cantidad_pruducto_id_<%= product.id %>" type="number" class="" name=""></td>
+      
+        <% @products.each do |product| %>
+          <tr>
+            <td><%= product.id  %></td>
+            <td><%= product.nombre %></td>
+            <td><%= product.descripcion %></td>
+            <!-- <td><%= product.stock_fisico %></td> -->
+            <td><%= product.stock_disponible %></td>
+            <td><input value="0" id="cantidad_pruducto_id_<%= product.id %>" type="number" class="" name="products[<%= product.id %>]"></td>
 
-          <td><a href="#" class="btn btn-success btn-sm reservar_producto"  data-nombre-producto="<%= product.nombre %>" data-id-producto="<%= product.id %>" >Reservar</a></td>
-
-          <td><a href="/products/product_details/<%= product.id %>"class="btn btn-info btn-sm">Ver Detalles</a></td>
-        </tr>
-      <% end %>            
+            <td><a href="/products/product_details/<%= product.id %>" class="btn btn-info btn-sm">Ver Detalles</a></td>
+          </tr>
+        <% end %>                    
+      
+      
     </tbody>
   </table>
 
 
-<!--   <br><br><br>
-  <footer class="footer">
-    <p>&copy; Duoc 2017</p>
-  </footer>
- -->
+  <br>
 
-<!-- <%#= render partial: "/layouts/footer" %> -->
+  <div>
+    <button type="submit" class="btn btn-success btn-block" >Reservar</button>
+  </div> 
+
+</form>
+
+
+
  
 
 <% content_for :javascript do %>
@@ -57,7 +64,6 @@
           $('#tabla_products').DataTable({
             "dom": "f"
           });
-
 
 
           $(".reservar_producto").click(function(ev) {

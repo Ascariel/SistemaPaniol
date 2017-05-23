@@ -1,7 +1,5 @@
-<h4 class="grey">Listado Reservas </h4>
-<br>
-<h6>Nombre: <i><%= "#{@user.nombre} #{@user.apellido}" %>  </i></h6>
-<h6>Email: <i><%= "#{@user.email}" %>  </i></h6>
+
+<h3 class="">Manejo de Reservas</h3>
 <br><br>
 
 <div class="row">
@@ -25,6 +23,10 @@
       <tbody>
         
         <% @reservas.each do |reserva| %>
+
+          <% product = reserva.product %>
+          <% user = reserva.user %>    
+              
           <tr>
             <td><%= reserva.id  %></td>
             <td><%= reserva.product.nombre %></td>
@@ -33,13 +35,16 @@
             <td><i><%= reserva.estado.capitalize %></i></td>
             <td><%= reserva.fecha_inicio.to_date %></td>
             <td><%= reserva.fecha_termino.to_date %></td>
-            <td><%= @user.email %></td>
+            <td><%= user.email %></td>
           </tr>
         <% end %>                    
       
       </tbody>
     </table>
   </div>
+
+
+
 
 </div>
 

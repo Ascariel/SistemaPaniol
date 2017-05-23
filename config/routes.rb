@@ -1,12 +1,14 @@
 Rails.application.routes.draw do
 
+  root  "home#index"
+
+  get '/solicitud_reservas/confirmar_reservas' => 'solicitud_reservas#confirmar_reservas'
+
   resources :categories
   resources :products
   resources :users
-  root  "home#index"
+  resources :solicitud_reservas
 
-
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
 
 

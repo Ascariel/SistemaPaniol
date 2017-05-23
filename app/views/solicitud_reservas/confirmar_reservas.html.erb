@@ -1,0 +1,41 @@
+<br><br>
+
+
+  <table id="tabla_confirmacion_reservas" class="table table-hover table-striped">
+    
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Producto</th>
+        <th>Cantidad</th>
+        <th>Dias Prestamo</th>
+        <th>Usuario</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      <% @reservas.each do |reserva| %>
+        <tr>
+          <td><%= reserva.id  %></td>
+          <td><%= reserva.product.nombre %></td>
+          <td><%= reserva.productos_solicitados %></td>
+          <td><%= reserva.product.dias_prestamo %></td>
+          <td><%= @user.email %></td>
+        </tr>
+      <% end %>                    
+    
+    </tbody>
+  </table>
+  <br>
+  <div class="row">
+    <div class="col-md-6"></div>
+    <div class="col-md-3">
+      <a href="/products?alert=reserva_cancelada" class="btn btn-danger btn-block">Cancelar</a>
+    </div>    
+    <div class="col-md-3">
+      <a href="/users/<%= @user.id %>?alert=reserva_exitosa" class="btn btn-success btn-block">Confirmar Reserva</a>
+    </div>
+
+  </div>
+
+

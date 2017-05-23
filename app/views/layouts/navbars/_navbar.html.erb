@@ -12,7 +12,7 @@
           <a class="nav-link" href="/products">Mantenedor Productos</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/products">Mantenedor Reservas</a>
+          <a class="nav-link" href="/solicitud_reservas">Mantenedor Reservas</a>
         </li>
 
       <% else %>
@@ -21,7 +21,7 @@
           <a class="nav-link" href="/products">Generar Reserva</a>
         </li>  
         <li class="nav-item">
-          <a class="nav-link" href="/reservas">Mis Reservas</a>
+          <a class="nav-link" href="/users/<%= @user.try(:id) || User.alumnos.first.try(:id) %>">Mis Reservas</a>
         </li>        
         <li class="nav-item">
           <a class="nav-link" href="/products">Perfil Estudiante</a>
