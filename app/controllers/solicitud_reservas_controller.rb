@@ -1,5 +1,6 @@
 class SolicitudReservasController < ApplicationController
-
+  before_action :authenticate_user!
+  
   def index
     @reservas = SolicitudReserva.all
   end
@@ -11,6 +12,11 @@ class SolicitudReservasController < ApplicationController
 
   def create
     @user = User.alumnos.first
+    
+    if @user.rol != "alumno"
+      return redirect_to "/product_list?alert=solo_usuarios_pueden_reservar"
+    end
+
     @reservas = []
     products = params[:products]
 

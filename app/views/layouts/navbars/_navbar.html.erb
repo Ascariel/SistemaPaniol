@@ -1,39 +1,45 @@
 <div class="header clearfix">
   <nav>
     <ul class="nav nav-pills float-right">
+      <% if current_user.try(:rol) == "admin" %>
 
-      <li class="nav-item">
-        <a class="nav-link" href="/products">Productos</a>
-      </li>
-
-      <% if @rol_usuario == "admin" %>
-
+        <li class="nav-item">
+          <a class="nav-link" href="/categories">Mantenedor Categorias</a>
+        </li>
         <li class="nav-item">
           <a class="nav-link" href="/products">Mantenedor Productos</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/solicitud_reservas">Mantenedor Reservas</a>
-        </li>
+        </li>        
 
-      <% else %>
+      <% elsif current_user.try(:rol) == "alumno" %>
 
         <li class="nav-item">
-          <a class="nav-link" href="/products">Generar Reserva</a>
+          <a class="nav-link" href="/product_list">Generar Reserva</a>
         </li>  
         <li class="nav-item">
           <a class="nav-link" href="/users/<%= @user.try(:id) || User.alumnos.first.try(:id) %>">Mis Reservas</a>
         </li>        
-        <li class="nav-item">
-          <a class="nav-link" href="/products">Perfil Estudiante</a>
-        </li>                  
+
       <% end %>
 
-      <li class="nav-item">
-        <a class="nav-link active" href="/">Inicio</a>
-      </li>
+<!--       <li class="nav-item">
+        <a class="nav-link " href="/">Inicio</a>
+      </li> -->
 
+      <% if current_user.present? %>
+        <li class="nav-item">
+          <a class="nav-link active" href="/users/sign_out" data-method="delete">Salir</a>
+        </li>
+      <% else %>
+        <li class="nav-item">
+          <a class="nav-link active" href="/users/sign_in">Iniciar Session</a>
+        </li>
+      <% end %>      
     </ul>
 
   </nav>
-  <h3 class="text-muted">Sistema Pañol Duoc</h3>
+  <a href="/" style="text-decoration: none"><h3 class="text-muted">Sistema Pañol Duoc</h3></a>
+  
 </div>
