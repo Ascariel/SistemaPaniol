@@ -1,25 +1,69 @@
-<p id="notice"><%= notice %></p>
 
-<h1>Categories</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  <br>
 
-  <tbody>
-    <% @categories.each do |category| %>
+  <div class="jumbotron">
+    <h1 class="display-3 text-center">Listado de Categorias</h1><br>
+    <p class="lead text-center"></p>
+  </div>
+
+<a href="/categories/new" class="btn btn-success">Crear Categoria</a>
+<br><br>
+
+<form action="/solicitud_reservas" method="POST">
+  <%= csrf_meta_tag %>
+  <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>"/>  
+  <table id="tabla_products" class="table table-hover table-striped">
+    
+    <thead>
       <tr>
-        <td><%= link_to 'Show', category %></td>
-        <td><%= link_to 'Edit', edit_category_path(category) %></td>
-        <td><%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Descripcion</th>
+        <th></th>
+        <th></th>
+        <th></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      
+        <% @categories.each do |category| %>
+          <tr>
+            <td><%= category.id  %></td>
+            <td><%= category.nombre %></td>
+            <td><%= category.descripcion %></td>
+            <td><a href="/categories/<%= category.id %>/edit" class="btn btn-info btn-sm">Editar</a></td>
+            <td><a href="/categories/delete_category/<%= category.id %>" class="btn btn-danger btn-sm">Eliminar</a></td>            
+          </tr>
+        <% end %>                    
+      
+    </tbody>
+  </table>
+</form>
 
-<br>
 
-<%= link_to 'New Category', new_category_path %>
+
+ 
+
+<% content_for :javascript do %>
+
+  <script type="text/javascript">
+
+      $(document).ready(function() {
+
+          <% if params[:alert] == "element_borrado" %>
+            swal("Elemento Borrado", "", "success")
+          <% elsif params[:alert] == "producto_con_dependencias" %>
+            swal("Elemento No Eliminado", "Asegurese de eliminar todos los elementos asociados antes de intentar eliminar este elemento", "success")
+          <% end %>
+
+          $('#tabla_categorys').DataTable({
+            "dom": "f"
+          });
+
+      });      
+    </script>     
+
+
+ <% end %>
+

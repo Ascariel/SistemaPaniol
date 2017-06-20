@@ -1,17 +1,19 @@
-<%= form_for(category) do |f| %>
-  <% if category.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(category.errors.count, "error") %> prohibited this category from being saved:</h2>
+<form class="form" method="POST" action="/categories/<%= category.id %>">
+  <input type="hidden" name="_method" value="patch">
+  <input type="hidden" name="authenticity_token" value="sERFm6fNwz3b8TlGt/qJw6uiszpdwRbn1kelLmp8avCQnJz1H0+APQ8hqYgE3aO0HhEGMn27MwWjpeHAArpxcA==">
 
-      <ul>
-      <% category.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit %>
+  <div class="form-group">
+    <label >Nombre:</label>
+    <input type="text" class="form-control" name="category[nombre]" value="<%= category.nombre %>">  
   </div>
-<% end %>
+
+
+  <div class="form-group">
+    <label >Descripcion:</label>
+    <input type="text" class="form-control" name="category[descripcion]" value="<%= category.descripcion %>">
+  </div>
+
+
+  <br>
+  <button type="submit" class="form-control btn btn-success">Guardar</button>  
+</form>
