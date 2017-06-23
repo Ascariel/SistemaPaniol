@@ -45,7 +45,7 @@ test: &TEST
 production:
   adapter: postgresql
   encoding: utf8
-  database: sistema_paniol
+  database: sistema_paniol_prod
   pool: 5
   username: sistema_paniol
   password: passpass
