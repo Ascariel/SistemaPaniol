@@ -69,3 +69,4 @@ log/psimple_rake_log.txt
 # Custom beautify for atom
 .jsbeautifyrc
 *.swp
+tmp/pids/server.pid
