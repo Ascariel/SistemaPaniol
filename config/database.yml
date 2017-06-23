@@ -31,7 +31,7 @@ development:
   encoding: utf8
   database: sistema_paniol_dev
   pool: 5
-  username: postgres
+  username: sistema_paniol
   password: passpass
 
 test: &TEST
@@ -39,7 +39,7 @@ test: &TEST
   encoding: utf8
   database: sistema_paniol_test
   pool: 5
-  username: postgres
+  username: sistema_paniol
   password: passpass
 
 production:
@@ -47,5 +47,5 @@ production:
   encoding: utf8
   database: sistema_paniol
   pool: 5
-  username: postgres
+  username: sistema_paniol
   password: passpass
