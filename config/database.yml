@@ -39,13 +39,13 @@ test: &TEST
   encoding: utf8
   database: sistema_paniol_test
   pool: 5
-  username: 
-  password:
+  username: postgres
+  password: passpass
 
 production:
   adapter: postgresql
   encoding: utf8
   database: sistema_paniol
   pool: 5
-  username: 
-  password:
+  username: postgres
+  password: passpass
