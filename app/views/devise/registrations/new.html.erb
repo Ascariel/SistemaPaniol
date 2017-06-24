@@ -5,7 +5,7 @@
   <% errors = resource.errors.full_messages[0] %>
   
   <% if errors %>
-    <div class="flash alert text-danger bg-warning"><%= resource.errors.full_messages[0] %></div>
+    <div class="flash alert text-warning bg-warning"><%= resource.errors.full_messages[0] %></div>
   <% end %>
   
   <% flash.each do |key, value| %>
