@@ -12,7 +12,8 @@
  *
  *= require_tree .
  *= require bootstrap_overrides
- *= require bootstrap.min
+ *= require bootstrap3.min
+
 
  *= require_self
  */
