@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-
+gem 'foreman'
 gem 'pg'
 # gem 'postgres'
 gem "awesome_print"

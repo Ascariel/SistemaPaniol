@@ -45,7 +45,7 @@ test: &TEST
 production:
   adapter: postgresql
   encoding: utf8
-  database: sistema_paniol_prod
+  database: dci34lpei00cbb
   pool: 5
-  username: sistema_paniol
-  password: passpass
+  username: scnkcpchtwmhas
+  password: 6f1a7432a3e40053bb8550256ecf4bf8b8ee9c45dabed6bbd194e4567b15023f
