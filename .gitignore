@@ -70,3 +70,4 @@ log/psimple_rake_log.txt
 .jsbeautifyrc
 *.swp
 tmp/pids/server.pid
+Procfile
