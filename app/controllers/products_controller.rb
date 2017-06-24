@@ -5,7 +5,6 @@ class ProductsController < ApplicationController
   # GET /products.json
   def index
     @products = Product.all
-    # @rol_usuario = User.first.try(:rol)
   end
 
   def product_list

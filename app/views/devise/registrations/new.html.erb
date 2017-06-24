@@ -1,7 +1,16 @@
 <h2>Registrarse</h2>
 <br>
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+
+  <% errors = resource.errors.full_messages[0] %>
+  
+  <% if errors %>
+    <div class="flash alert text-danger bg-warning"><%= resource.errors.full_messages[0] %></div>
+  <% end %>
+  
+  <% flash.each do |key, value| %>
+     <div class="flash alert text-warning bg-info"><%= value %></div>
+  <% end %>
 
   <div class="form-group">
     <%= f.label :email %>

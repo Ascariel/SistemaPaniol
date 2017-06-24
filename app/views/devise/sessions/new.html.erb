@@ -5,7 +5,7 @@
 
   <%= devise_error_messages! %>
   <% flash.each do |key, value| %>
-     <div class="flash <%= key %> text-danger bg-warning"><%= value %></div>
+     <div class="flash alert text-warning bg-warning"><%= value %></div>
   <% end %>
 
   <div class="form-group">

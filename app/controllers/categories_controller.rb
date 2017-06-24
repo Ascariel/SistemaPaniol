@@ -2,7 +2,7 @@ class CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :edit, :update, :destroy]
 
   def index
-    @categories = Category.where("deleted is not ?", true)
+    @categories = Category.where("deleted is not true")
   end
 
   def show

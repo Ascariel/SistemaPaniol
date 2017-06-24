@@ -1,48 +1,70 @@
-<div class="header clearfix">
-  <nav>
-    <ul class="nav nav-pills float-right">
-      <% if current_user.try(:rol) == "admin" %>
+<nav class="navbar navbar-default" >
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="/" class="navbar-brand" ><b>Sistema Pañol Duoc</b></a>
+    </div>
 
-        <li class="nav-item">
-          <a class="nav-link" href="/categories">Mantenedor Categorias</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/products">Mantenedor Productos</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/solicitud_reservas">Mantenedor Reservas</a>
-        </li>        
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
 
-      <% elsif current_user.try(:rol) == "alumno" %>
+        <% if current_user.try(:rol) == "admin" %>
 
-        <li class="nav-item">
-          <a class="nav-link" href="/product_list">Generar Reserva</a>
-        </li>  
-        <li class="nav-item">
-          <a class="nav-link" href="/users/<%= @user.try(:id) || User.alumnos.first.try(:id) %>">Mis Reservas</a>
-        </li>        
+      
 
-      <% end %>
+        <li class="dropdown">
+          
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Mantenedores <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li class="nav-item">
+              <a class="nav-link" href="/categories">Mantenedor Categorias</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/products">Mantenedor Productos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/solicitud_reservas">Mantenedor Reservas</a>
+            </li>  
+          </ul>
+          
+        </li>          
 
-<!--       <li class="nav-item">
-        <a class="nav-link " href="/">Inicio</a>
-      </li> -->
+        <% elsif current_user.try(:rol) == "alumno" %>
 
-      <% if current_user.present? %>
-        <li class="nav-item">
-          <a class="nav-link " href="/users/sign_out" data-method="delete">Salir</a>
-        </li>
-      <% else %>
-        <li class="nav-item">
-          <a class="nav-link" href="/users/sign_in">Ingresar</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/users/sign_up">Registrarse</a>
-        </li>        
-      <% end %>      
-    </ul>
+          <li class="nav-item">
+            <a class="nav-link" href="/product_list">Generar Reserva</a>
+          </li>  
+          <li class="nav-item">
+            <a class="nav-link" href="/users/<%= @user.try(:id) || User.alumnos.first.try(:id) %>">Mis Reservas</a>
+          </li>        
 
-  </nav>
-  <a href="/" style="text-decoration: none"><h3 class="text-muted">Sistema Pañol Duoc</h3></a>
-  
-</div>
+        <% end %>
+
+
+
+        <% if current_user.present? %>
+          <li class="nav-item">
+            <a class="nav-link " href="/users/sign_out" data-method="delete">Salir</a>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <a class="nav-link" href="/users/sign_in">Ingresar</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/users/sign_up">Registrarse</a>
+          </li>        
+        <% end %> 
+
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+
