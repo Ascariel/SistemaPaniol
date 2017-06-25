@@ -6,7 +6,7 @@
 - CRUD Categorias/Productos
 
 
-linea de pablo, asdasdasd, sjkfsdkfsh
+linea de pablo, asdasdasd;
 
 # README
 
