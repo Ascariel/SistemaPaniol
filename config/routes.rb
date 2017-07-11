@@ -2,7 +2,10 @@ Rails.application.routes.draw do
 
   
   root  "home#index"
-  devise_for :users
+  # devise_for :users
+  devise_for :users, controllers: {
+    sessions: 'users/sessions',
+  }  
 
   get '/solicitud_reservas/confirmar_reservas' => 'solicitud_reservas#confirmar_reservas'
   get '/categories/delete_category/:id' => 'categories#delete_category'

@@ -7,6 +7,9 @@ class User < ApplicationRecord
 
   before_create :set_rol
 
+  validates :rut, :email, uniqueness: true
+  validates :email, :rut, presence: true
+
 
   def self.admins
     return User.where("rol = 'admin' ")
@@ -19,5 +22,9 @@ class User < ApplicationRecord
   def set_rol
     self.rol = self.rol || "alumno" 
   end
+
+  def email_changed?
+    false
+  end  
 
 end

@@ -14,17 +14,23 @@
 
   <div class="form-group">
     <%= f.label :email %>
-    <%= f.email_field :email, class: "form-control", autofocus: true %>
+    <%= f.email_field :email, class: "form-control", autofocus: true, required: true, placeholder: "Ingrese email" %>
   </div>
+
+  <div class="form-group">
+    <%= f.label :rut %>
+    <!-- <input type="text" name="user[rut]" class="form-control" required> -->
+    <%= f.text_field :rut, class: "form-control", autofocus: true, value: "", placeholder: "Ej: 163885050", required: true %>    
+  </div>  
 
   <div class="form-group">
     <%= f.label :contraseña %>
-    <%= f.password_field :password, class: "form-control", autocomplete: "off" %>
+    <%= f.password_field :password, class: "form-control", autocomplete: "off", required: true, placeholder: "Minimo 6 caracteres"  %>
   </div>
 
   <div class="form-group">
-    <%= f.label :conformar_contraseña %>
-    <%= f.password_field :password_confirmation, class: "form-control", autocomplete: "off" %>
+    <%= f.label :confirmar_contraseña %>
+    <%= f.password_field :password_confirmation, class: "form-control", autocomplete: "off", required: true, placeholder: "Minimo 6 caracteres"  %>
   </div>
 
   <div class="field">
