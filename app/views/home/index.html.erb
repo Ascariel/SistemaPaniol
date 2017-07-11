@@ -1,4 +1,6 @@
-
+  <% flash.each do |key, value| %>
+     <div class="flash alert text-warning bg-warning"><%= value %></div>
+  <% end %>
 
   <div class="jumbotron" style="background-color: rgba(169, 204, 198, 0.46)!important">
     <h1 class="display-3">Bienvenido al Sistema Pañol</h1>
