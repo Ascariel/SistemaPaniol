@@ -1,18 +1,12 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
-  def modificar_cuenta
-    user = User.find_by(rut: params[:confirmar_rut])
-    result = user.update(confirmed_at: Date.current, confirmation_sent_at: Date.current) if user.present?
+  def toggle_user_confirmado
+    user = User.find(params[:id])
+    fecha_confirmacion = user.confirmed_at ? nil : Date.current
 
-    return redirect_to "/users/sign_in?usuario_confirmado" if result
-
-    user = User.find_by(rut: params[:desconfirmar_rut])
-    result = user.update(confirmed_at: nil, confirmation_sent_at: nil) if user.present?
-
-    return redirect_to "/users/sign_in?usuario_desconfirmado" if result
-
-    return redirect_to "/users/sign_in?usuario_no_encontrado" if result.blank?
+    user.update(confirmed_at: fecha_confirmacion)
+    return render json: { success: true, user: user }
   end
   # GET /users
   # GET /users.json
@@ -41,14 +35,10 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
 
-    respond_to do |format|
-      if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
-        format.json { render :show, status: :created, location: @user }
-      else
-        format.html { render :new }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
+    if @user.save
+      return redirect_to '/users?usuario_creado'
+    else
+      return redirect_to '/users?usuario_no_creado'
     end
   end
 
@@ -57,8 +47,8 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
-        format.json { render :show, status: :ok, location: @user }
+        format.html { redirect_to "/users", notice: 'Usuario Actualizado!' }
+        format.json { render :index, status: :ok, location: @user }
       else
         format.html { render :edit }
         format.json { render json: @user.errors, status: :unprocessable_entity }
@@ -84,6 +74,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:rut, :nombre, :apellido, :telefono, :email, :password, :rol)
+      params.require(:user).permit(:rut, :nombre, :apellido, :telefono, :email, :password, :rol, :direccion, :password, :password_confirmation)
     end
 end

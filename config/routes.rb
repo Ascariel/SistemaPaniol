@@ -12,7 +12,10 @@ Rails.application.routes.draw do
   get '/categories/delete_category/:id' => 'categories#delete_category'
   get '/products/delete_product/:id' => 'products#destroy'
   get '/product_list' => 'products#product_list'
-  get '/modificar_cuenta' => 'users#modificar_cuenta'
+
+  post '/users/create_user' => 'users#create'
+  post '/toggle_user_confirmado' => 'users#toggle_user_confirmado'
+
 
   resources :categories
   resources :products

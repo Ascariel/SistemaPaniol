@@ -1,34 +1,47 @@
-<p id="notice"><%= notice %></p>
+<!-- <p id="notice"><%#= notice %></p> -->
+  <% flash.each do |key, value| %>
+     <div class="flash alert text-warning bg-warning"><%= value %></div>
+  <% end %>
 
-<h1>Users</h1>
+<h1>Listado Usuarios</h1>
+<br><br>
 
-<table>
+<a href="/users/new" class="btn btn-success">Crear Usuario</a>
+<br><br>
+
+<table id="tabla_reservas" class="table table-hover table-striped">
   <thead>
     <tr>
       <th>Rut</th>
+      <th>Email</th>
+      <th>Rol</th>
       <th>Nombre</th>
       <th>Apellido</th>
       <th>Telefono</th>
-      <th>Email</th>
-      <th>Password</th>
-      <th>Rol</th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @users.each do |user| %>
+      
+      <% confirmado = user.confirmed_at.present? %>
+      <% texto_autorizacion = confirmado ? 'Desconfirmar Cuenta' : 'Confirmar Cuenta' %>
+      <% clase_btn = confirmado ? 'info' : 'default' %>
+
       <tr>
         <td><%= user.rut %></td>
+        <td><%= user.email %></td>
+        <td><%= user.rol.upcase %></td>
         <td><%= user.nombre %></td>
         <td><%= user.apellido %></td>
         <td><%= user.telefono %></td>
-        <td><%= user.email %></td>
+        
         <td><%= user.password %></td>
-        <td><%= user.rol %></td>
-        <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        
+        <td><%= link_to texto_autorizacion, '', class: "btn btn-#{clase_btn} btn-block btn-sm toggle_confirmado", "data-confirmado": confirmado, "data-user-id": "#{user.id}" %></td>
+        <td><%= link_to 'Edit', edit_user_path(user), class: "btn btn-warning btn-block btn-sm" %></td>
+        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: "Estas seguro que quieres eliminar a #{user.nombre} #{user.apellido}?" }, class: "btn btn-danger btn-block btn-sm" %></td>
       </tr>
     <% end %>
   </tbody>
@@ -36,4 +49,34 @@
 
 <br>
 
-<%= link_to 'New User', new_user_path %>
+<% content_for :javascript do %>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        
+
+        $(".toggle_confirmado").click(function(event) {
+          event.preventDefault()
+          var btn = $(this)
+          var confirmado = btn.data("confirmado")
+          var user_id = btn.data("user-id")
+
+          $.ajax({
+            url: '/toggle_user_confirmado',
+            type: 'POST',
+            data: {id: user_id},
+          })
+          .done(function() {
+            window.location = "?cuenta_actualizada"
+          })
+          .fail(function() {
+            console.log("error");
+          })
+          .always(function() {
+            console.log("complete");
+          });
+          
+        });
+
+      });
+    </script>
+<% end %>
