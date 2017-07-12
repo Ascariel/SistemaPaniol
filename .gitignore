@@ -72,3 +72,4 @@ log/psimple_rake_log.txt
 tmp/pids/server.pid
 Procfile
 D
+tmp
