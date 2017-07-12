@@ -1,0 +1,53 @@
+.azul-duoc-1 {
+  background-color: #00162B;
+}
+
+.azul-duoc-2 {
+  background-color: #013c75;;
+}
+
+.nav-text-color {
+  color: #fff !important;
+}
+
+.bkg-banner{
+  background: url(./banner-home.jpg) no-repeat left top;
+  background-position: center;
+  padding-top: 17%;
+}
+
+
+/* sobreescritos */
+
+.navbar-default .navbar-nav>li>a {
+  color: #fff !important;
+}
+.btn-success {
+    color: #fff;
+    background-color: #013c75;
+    border-color: #013c75;
+}
+
+.btn-success:hover {
+    color: #fff;
+    background-color: #3270ad;
+    border-color: #3270ad;
+}
+
+.btn-success.active, .btn-success:active, .open>.dropdown-toggle.btn-success {
+    color: #fff;
+    background-color: #3270ad;
+    border-color: #3270ad;
+}
+
+.btn-success.focus, .btn-success:focus {
+    color: #fff;
+    background-color: #3270ad;
+    border-color: #3270ad;
+}
+
+.btn-success:hover {
+    color: #fff;
+    background-color: #3270ad;
+    border-color: #3270ad;
+}

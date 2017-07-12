@@ -1,0 +1,24 @@
+LOG:  database system was shut down at 2017-06-24 14:47:22 CLT
+LOG:  MultiXact member wraparound protections are now enabled
+LOG:  database system is ready to accept connections
+LOG:  autovacuum launcher started
+FATAL:  role "sistema_paniol" does not exist
+FATAL:  database "Andrea" does not exist
+FATAL:  role "sistema_paniol" does not exist
+FATAL:  role "sistema_paniol" does not exist
+LOG:  using stale statistics instead of current ones because stats collector is not responding
+LOG:  using stale statistics instead of current ones because stats collector is not responding
+LOG:  using stale statistics instead of current ones because stats collector is not responding
+LOG:  using stale statistics instead of current ones because stats collector is not responding
+LOG:  using stale statistics instead of current ones because stats collector is not responding
+LOG:  using stale statistics instead of current ones because stats collector is not responding
+LOG:  using stale statistics instead of current ones because stats collector is not responding
+LOG:  using stale statistics instead of current ones because stats collector is not responding
+LOG:  using stale statistics instead of current ones because stats collector is not responding
+LOG:  using stale statistics instead of current ones because stats collector is not responding
+LOG:  using stale statistics instead of current ones because stats collector is not responding
+LOG:  using stale statistics instead of current ones because stats collector is not responding
+LOG:  autovacuum launcher shutting down
+LOG:  received smart shutdown request
+LOG:  shutting down
+LOG:  database system is shut down
