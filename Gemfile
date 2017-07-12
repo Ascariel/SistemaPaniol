@@ -2,7 +2,9 @@ source 'https://rubygems.org'
 
 gem 'foreman'
 gem 'pg'
-# gem 'postgres'
+gem "rest-client"
+gem 'postmark-rails'
+# gem ''
 gem "awesome_print"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'

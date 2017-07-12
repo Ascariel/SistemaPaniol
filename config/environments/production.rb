@@ -17,8 +17,11 @@ Rails.application.configure do
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
   config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
+
+  config.action_mailer.delivery_method = :postmark
+  config.action_mailer.postmark_settings = { :api_token => "0732f508-6d49-4f1a-a559-9e834620f8cf" }  
+
   config.action_mailer.default_url_options = { :host => "sheltered-brushlands-64231.herokuapp.com" }
-  config.action_mailer.delivery_method = :sendmail
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true  
   # Compress JavaScripts and CSS.

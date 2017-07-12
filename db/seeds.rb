@@ -1,8 +1,8 @@
 
 
 
-user = User.create(email: "pablocangas@gmail.com", nombre: "Alumno 1", apellido: "Apellido", rol: "alumno", password: "passpass", password_confirmation: "passpass" )
-user2 = User.create(email: "pablo@propertysimple.com", nombre: "Admin 1", apellido: "Apellido Admin", rol: "admin", password: "passpass", password_confirmation: "passpass" )
+user = User.create(email: "pablocangas@gmail.com", rut: "admin", nombre: "Admin", apellido: "Apellido Admin", rol: "admin", password: "passpass", password_confirmation: "passpass", confirmed_at: Date.current, confirmation_sent_at: Date.current )
+user = User.create(email: "pablo@propertysimple.com", rut: "alumno", nombre: "Alumno", apellido: "Apellido Alumno", rol: "alumno", password: "passpass", password_confirmation: "passpass", confirmed_at: Date.current, confirmation_sent_at: Date.current )
 
 category = Category.create(nombre: "Libros", descripcion: "Coleccion de libros fisicos")
 

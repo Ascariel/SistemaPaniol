@@ -69,16 +69,16 @@ ActiveRecord::Schema.define(version: 20170711065852) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "rut",                    default: "rut"
+    t.string   "rut"
     t.string   "nombre"
-    t.string   "apellido",               default: "Apellido"
+    t.string   "apellido",               default: "Apellido Test"
     t.string   "telefono",               default: "93424562"
     t.string   "email"
     t.string   "password"
     t.string   "rol"
-    t.datetime "created_at",                                     null: false
-    t.datetime "updated_at",                                     null: false
-    t.string   "encrypted_password",     default: "",            null: false
+    t.datetime "created_at",                                       null: false
+    t.datetime "updated_at",                                       null: false
+    t.string   "encrypted_password",     default: "",              null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
