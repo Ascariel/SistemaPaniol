@@ -40,8 +40,8 @@
         <td><%= user.password %></td>
         
         <td><%= link_to texto_autorizacion, '', class: "btn btn-#{clase_btn} btn-block btn-sm toggle_confirmado", "data-confirmado": confirmado, "data-user-id": "#{user.id}" %></td>
-        <td><%= link_to 'Edit', edit_user_path(user), class: "btn btn-warning btn-block btn-sm" %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: "Estas seguro que quieres eliminar a #{user.nombre} #{user.apellido}?" }, class: "btn btn-danger btn-block btn-sm" %></td>
+        <td><%= link_to 'Editar', edit_user_path(user), class: "btn btn-warning btn-block btn-sm" %></td>
+        <td><%= link_to 'Eliminar', user, method: :delete, data: { confirm: "Estas seguro que quieres eliminar a #{user.nombre} #{user.apellido}?" }, class: "btn btn-danger btn-block btn-sm" %></td>
       </tr>
     <% end %>
   </tbody>
