@@ -1,27 +1,41 @@
 <h2>Iniciar Sesion</h2>
 <br>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+<div class="row" style="margin-bottom: 30px;">
+  <div class="col-md-1"></div>  
+  <div class="col-md-4 login-box">
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
-  <%= devise_error_messages! %>
-  <% flash.each do |key, value| %>
-     <div class="flash alert text-warning bg-warning"><%= value %></div>
-  <% end %>
+      <%= devise_error_messages! %>
+      <% flash.each do |key, value| %>
+         <div class="flash alert text-warning bg-warning"><%= value %></div>
+      <% end %>
 
-  <div class="form-group">
-    <%= f.label :rut %><br />
-    <%= f.text_field :rut, class: "form-control", autofocus: true, value: "", placeholder: "Ej: 163885050" %>
+      <div class="form-group">
+        <%= f.label :rut %><br />
+        <%= f.text_field :rut, class: "form-control", autofocus: true, value: "", placeholder: "Ej: 163885050" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :contraseña %><br />
+        <%= f.password_field :password, class: "form-control", autocomplete: "off" %>
+      </div>
+
+
+      <div class="actions">
+        <%= f.submit "Iniciar Session", class: "btn btn-success" %>
+      </div>
+    <% end %>
+
+    <%= render "devise/shared/links" %>    
   </div>
 
-  <div class="form-group">
-    <%= f.label :contraseña %><br />
-    <%= f.password_field :password, class: "form-control", autocomplete: "off" %>
-  </div>
+  <div class="col-md-3"></div>  
 
+  <div class="col-md-4">
+    <a href="http://www.duoc.cl/biblioteca/bases-22o-concurso-de-cuentos-duoc-uc">
+          <%= image_tag("side-img-1.png", :alt => "Concurso") %>
+    </a>        
+  </div>  
+</div>
 
-  <div class="actions">
-    <%= f.submit "Iniciar Session", class: "btn btn-success" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>

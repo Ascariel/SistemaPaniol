@@ -74,3 +74,5 @@ Procfile
 D
 /tmp
 tmp
+.DS_Store
+app/.DS_Store

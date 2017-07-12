@@ -1,5 +1,5 @@
 .azul-duoc-1 {
-  background-color: #00162B;
+  background-color: #003865;
 }
 
 .azul-duoc-2 {
@@ -14,6 +14,22 @@
   background: url(./banner-home.jpg) no-repeat left top;
   background-position: center;
   padding-top: 17%;
+}
+.login-box{
+  background-color: rgba(0, 56, 101, 0.04);
+  padding: 20px;
+  border-radius: 4px;  
+}
+
+/* FOOTER */
+.bkg-footer{
+  background-color: #003865;  
+  border-radius: 4px;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  border-top: solid 5px #FAAF3A;
 }
 
 
