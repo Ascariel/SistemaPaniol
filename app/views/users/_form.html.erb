@@ -1,52 +1,95 @@
-<%= form_for(user) do |f| %>
-  <% if user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+<h2>Registrarse</h2>
+<br>
 
-      <ul>
-      <% user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
+<% form_url = user.new_record? ? "/users/create_user" : "/users/#{user.id}" %>
+
+
+<%= form_for(user, url: form_url) do |f| %>
+
+  <% errors = user.errors.full_messages[0] %>
+  
+  <% if errors %>
+    <div class="flash alert text-warning bg-warning"><%= user.errors.full_messages[0] %></div>
+  <% end %>
+  
+  <% flash.each do |key, value| %>
+     <div class="flash alert text-warning bg-warning"><%= value %></div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :rut %>
-    <%= f.text_field :rut %>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= f.label :rut %>
+        <%= f.text_field :rut, class: "form-control", value: user.rut, autofocus: true,  placeholder: "Ingrese rut", required: true %>    
+      </div>        
+    </div>  
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= f.label :email %>
+        <%= f.email_field :email, class: "form-control", value: user.email, autofocus: true, required: true, placeholder: "Ingrese email" %>
+      </div>      
+    </div>
+  </div>     
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= f.label :nombre %>
+        <%= f.text_field :nombre, class: "form-control", value: user.nombre, autofocus: true, placeholder: "Ingrese nombre", required: true %>    
+      </div>        
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= f.label :apellido %>
+        <%= f.text_field :apellido, class: "form-control", value: user.apellido, autofocus: true, placeholder: "Ingrese apellido", required: true %>    
+      </div>        
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :nombre %>
-    <%= f.text_field :nombre %>
-  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= f.label :telefono %>
+        <%= f.text_field :telefono, class: "form-control", value: user.telefono, autofocus: true, placeholder: "Ingrese telefono", required: true %>    
+      </div>        
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= f.label :direccion %>
+        <%= f.text_field :direccion, class: "form-control", value: user.direccion, autofocus: true, placeholder: "Ingrese direccion", required: true %>    
+      </div>       
+    </div>
+  </div>    
+  <% if user.new_record? %>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= f.label :contraseña %>
+          <%= f.password_field :password, class: "form-control", value: user.password, autocomplete: "off", required: true, placeholder: "Minimo 6 caracteres"  %>
+        </div>      
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= f.label :confirmar_contraseña %>
+          <%= f.password_field :password_confirmation, class: "form-control", value: user.password_confirmation, autocomplete: "off", required: true, placeholder: "Minimo 6 caracteres"  %>
+        </div>      
+      </div>
+  </div> 
+  <% end %>
 
-  <div class="field">
-    <%= f.label :apellido %>
-    <%= f.text_field :apellido %>
-  </div>
+    
+  <br>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="actions">
+        <%= f.submit "Enviar", class: "btn btn-success btn-block" %>
+      </div>     
+    </div>
+  </div>      
 
-  <div class="field">
-    <%= f.label :telefono %>
-    <%= f.text_field :telefono %>
-  </div>
 
-  <div class="field">
-    <%= f.label :email %>
-    <%= f.text_field :email %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <%= f.text_field :password %>
-  </div>
-
-  <div class="field">
-    <%= f.label :rol %>
-    <%= f.text_field :rol %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
 <% end %>
+
+<%#= render "devise/shared/links" %>
+

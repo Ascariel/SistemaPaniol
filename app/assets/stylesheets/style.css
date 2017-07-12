@@ -73,3 +73,7 @@
     background-color: #3270ad;
     border-color: #3270ad;
 }
+
+.btn-default{
+  color: black!important;
+}
