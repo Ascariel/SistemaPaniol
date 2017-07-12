@@ -74,5 +74,7 @@ Procfile
 D
 /tmp
 tmp
+tmp/cache
+/tmp/cache
 .DS_Store
 app/.DS_Store
