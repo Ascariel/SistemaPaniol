@@ -61,10 +61,11 @@
       <div class="col-md-12">
         <div class="form-group">
           <%= f.label :rol %>
+          <%   %>
           <select class="form-control" name="user[rol]">
-            <option value="alumno">Alumno</option>
-            <option value="admin">Admin Pañolero</option>
-            <option value="profesor">Profesor</option>
+            <option value="alumno" <%= 'selected' if user.rol == 'alumno'  %> >Alumno</option>
+            <option value="admin" <%= 'selected' if user.rol == 'admin'  %>>Admin Pañolero</option>
+            <option value="profesor" <%= 'selected' if user.rol == 'profesor'  %>>Profesor</option>
           </select>
         </div>      
       </div>  
