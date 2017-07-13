@@ -1,6 +1,4 @@
-<h2>Registrarse</h2>
-<br>
-
+<br><br>
 <% form_url = user.new_record? ? "/users/create_user" : "/users/#{user.id}" %>
 
 
@@ -60,6 +58,17 @@
         <%= f.text_field :direccion, class: "form-control", value: user.direccion, autofocus: true, placeholder: "Ingrese direccion", required: true %>    
       </div>       
     </div>
+      <div class="col-md-12">
+        <div class="form-group">
+          <%= f.label :rol %>
+          <select class="form-control" name="user[rol]">
+            <option value="alumno">Alumno</option>
+            <option value="admin">Admin Pañolero</option>
+            <option value="profesor">Profesor</option>
+          </select>
+        </div>      
+      </div>  
+
   </div>    
   <% if user.new_record? %>
     <div class="row">
@@ -75,12 +84,12 @@
           <%= f.password_field :password_confirmation, class: "form-control", value: user.password_confirmation, autocomplete: "off", required: true, placeholder: "Minimo 6 caracteres"  %>
         </div>      
       </div>
-  </div> 
+    </div> 
   <% end %>
 
     
   <br>
-  <div class="row">
+  <div class="row">  
     <div class="col-md-12">
       <div class="actions">
         <%= f.submit "Enviar", class: "btn btn-success btn-block" %>
