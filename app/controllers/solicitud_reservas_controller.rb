@@ -10,11 +10,15 @@ class SolicitudReservasController < ApplicationController
     @user = User.alumnos.first
   end
 
+  def generar_reserva_admin
+    @products = Product.all
+    @users = User.pueden_reservar
+  end
+
   def create
-    @user = current_user
-    no_es_alumno = @user.rol != "alumno"
-    
-    if no_es_alumno
+    @user = User.find_by(id: params[:user_id]) ||current_user
+
+    if !@user.puede_reservar?
       return redirect_to "/product_list?alert=solo_usuarios_pueden_reservar"
     end
 
