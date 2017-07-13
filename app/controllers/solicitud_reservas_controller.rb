@@ -3,6 +3,8 @@ class SolicitudReservasController < ApplicationController
   
   def index
     @reservas = SolicitudReserva.all
+    @products = Product.all
+    @estados = ['pendiente', 'aprobada', 'prestado', 'finalizada', 'rechazada', 'cancelada', 'morosa']
   end
 
   def confirmar_reservas
@@ -15,8 +17,25 @@ class SolicitudReservasController < ApplicationController
     @users = User.pueden_reservar
   end
 
+  def update_estado_reserva
+    reserva = SolicitudReserva.find params[:reserva_id]
+    reserva.update(estado: params[:estado])
+
+    if reserva.aprobada?
+      UserMailer.notificar_aprobacion_reserva(reserva).deliver_now
+    end
+
+    return render json: { success: true, reserva: reserva }
+  end
+
+  def cancelar_reserva
+    reserva = SolicitudReserva.find params[:id]
+    reserva.cancelada!
+    render json: {success: true}
+  end
+
   def create
-    @user = User.find_by(id: params[:user_id]) ||current_user
+    @user = User.find_by(id: params[:user_id]) || current_user
 
     if !@user.puede_reservar?
       return redirect_to "/product_list?alert=solo_usuarios_pueden_reservar"

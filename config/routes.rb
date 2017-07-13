@@ -15,6 +15,8 @@ Rails.application.routes.draw do
 
   # SolicitudReservas
   get "/generar_reserva_admin" => 'solicitud_reservas#generar_reserva_admin'
+  post '/update_estado_reserva' => 'solicitud_reservas#update_estado_reserva'
+  get '/cancelar_reserva' => 'solicitud_reservas#cancelar_reserva'
 
   post '/users/create_user' => 'users#create'
   post '/toggle_user_confirmado' => 'users#toggle_user_confirmado'

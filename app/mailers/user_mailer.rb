@@ -5,4 +5,17 @@ class UserMailer < ApplicationMailer
     @msg = msg
     mail(to: receiver, subject: subject)
   end     
+
+  def notificar_aprobacion_reserva(reserva)
+    
+    @reserva = reserva
+    @product = reserva.product
+    @user = reserva.user
+    
+    mail(
+         to: @user.email, 
+         subject: "Solicitud de Reserva Aprobada"
+       )
+
+  end
 end

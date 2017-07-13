@@ -14,12 +14,14 @@
         <tr>
           <th>ID</th>
           <th>Producto</th>
-          <th>Cantidad</th>
+          <th>Estado</th>          
+          <th>Rut</th>
+          <th>Email</th>
+          <th>Cantidad Solicitada</th>
           <th>Dias Prestamo</th>
-          <th>Estado</th>
           <th>Fecha Inicio</th>
           <th>Fecha Termino</th>
-          <th>Usuario</th>
+          
         </tr>
       </thead>
       <tbody>
@@ -32,12 +34,22 @@
           <tr>
             <td><%= reserva.id  %></td>
             <td><%= reserva.product.nombre %></td>
+
+            <td>
+              <select name="estado" class="dropdown_estado form-control" data-reserva-id="<%= reserva.id %>">
+                <% @estados.each do |estado| %>
+                  <% selected = 'selected' if estado == reserva.estado %>
+                  <option value="<%= estado %>" <%= selected %> ><%= estado.capitalize %></option>
+                <% end %>
+              </select>              
+            </td>
+            <td><%= user.rut %></td>
+            <td><%= user.email %></td>
             <td><%= reserva.productos_solicitados %></td>
             <td><%= reserva.product.dias_prestamo %></td>
-            <td><i><%= reserva.estado.try :capitalize %></i></td>
             <td><%= reserva.fecha_inicio.try :to_date %></td>
             <td><%= reserva.fecha_termino.try :to_date %></td>
-            <td><%= user.email %></td>
+            
           </tr>
         <% end %>                    
       
@@ -52,9 +64,6 @@
 
 
 
-
- 
-
 <% content_for :javascript do %>
 
   <script type="text/javascript">
@@ -62,8 +71,30 @@
       $(document).ready(function() {
 
         $('#tabla_reservas').DataTable({
-          "dom": "f"
+          "dom": "f",
+          "pageLength": 300,
+          "order": [[0, 'desc']]
         });
+
+        $(".dropdown_estado").on('change', function(){
+
+          var html_dropdown = $(this)
+
+          var reserva_id = html_dropdown.data("reserva-id")
+          var estado = html_dropdown.val()
+
+          console.log(reserva_id)
+
+          $.ajax({
+            url: '/update_estado_reserva',
+            type: 'POST',
+            data: {reserva_id: reserva_id, estado: estado}
+          })
+          .done(function(response) {
+            console.log(response);
+            window.location = "?estado_actualizado"
+          })
+        })
 
       });      
     </script>     

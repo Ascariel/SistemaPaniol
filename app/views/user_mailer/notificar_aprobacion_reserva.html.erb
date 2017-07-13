@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Tu Solicitud de Reserva ha sido Aprobada!</h1>
+    <h3>Detalles Reserva:</h3>
+
+    <h4>ID RESERVA: <%= @reserva.id %></h4>
+
+    <p>Nombre Producto: <%= @product.nombre %></p>
+    <p>Categoria Producto: <%= @product.category.nombre %></p>
+    <p>Cantidad Solicitada: <%= @reserva.productos_solicitados %></p>
+    <p>Fecha Inicio: <%= @reserva.fecha_inicio.to_date %></p>
+    <p>Fecha Devolucion: <%= @reserva.fecha_termino.to_date %></p>
+    
+    <!-- <p>ESTADO: <%= @reserva.estado %></p> -->
+
+    <% if Rails.env.production? %>
+      <p>Si deseas cancelar esta reserva, hace click aqui:</p>
+      <a href="https://sheltered-brushlands-64231.herokuapp.com/cancelar_reserva?id=<%= @reserva.id %>">Cancelar Reserva</a>
+    <% end %>
+
+    <p>
+    </p>
+    <p>Acercate a nuestra biblioteca para retirar tus products</p>
+  </body>
+</html>
+

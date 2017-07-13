@@ -9,10 +9,8 @@
   <% flash.each do |key, value| %>
      <div class="flash alert text-warning bg-warning"><%= value %></div>
   <% end %>
-<br>
 
-<a href="/users/new" class="btn btn-success">Crear Usuario</a>
-
+<h4><b>Listado Usuarios</b></h4>
 
 <table id="tabla_users" class="table table-hover table-striped">
   <thead>
@@ -46,9 +44,9 @@
     <% end %>
   </tbody>
 </table>
-
+<a href="/users/new" class="btn btn-warning">Crear Usuario</a>
 <br><hr>
-<h3 id="nombre_usuario_seleccionado"><i>Elija un usuario a quien se le asignara las reservas que decida crear</i></h3>
+<h3 id="nombre_usuario_seleccionado"><i>Elija usuario a quien se le asignaran las reservas que decida crear</i></h3>
 <hr>
 
 <form id="generar_reserva_form" action="/solicitud_reservas" method="POST">
@@ -94,7 +92,7 @@
   <br>
 
   <div>
-    <button type="submit" id="generar_reserva" class="btn btn-success btn-block" >Reservar</button>
+    <button type="submit" id="generar_reserva" class="btn btn-warning btn-block" >Reservar</button>
   </div> 
 
 </form>
@@ -128,7 +126,7 @@
             var nombre_completo = btn.data("nombre")
             var user_id = btn.data("user-id")
 
-            var texto_usuario_asignado = "Dueño de Reserva: " + nombre_completo
+            var texto_usuario_asignado = "Dueño de la Reserva: " + nombre_completo
 
             $("#nombre_usuario_seleccionado").text(texto_usuario_asignado)
             $("#input_usuario_seleccionado").val(user_id)            
