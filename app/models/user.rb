@@ -61,4 +61,28 @@ class User < ApplicationRecord
     return User.alumnos.or(User.profesores)
   end
 
+
+  # REORTES
+
+  def self.prestamos_mes_periodo(fecha_inicio = nil, fecha_termino = nil)
+    fecha_inicio ||= DateTime.current.beginning_of_month
+    fecha_termino ||= DateTime.current.end_of_month
+
+    SolicitudReserva.prestado.where("fecha_inicio >= ? and fecha_termino <= ?", fecha_inicio, fecha_termino)
+  end
+
+  def self.asignaciones_mes_periodo(fecha_inicio = nil, fecha_termino = nil)
+    fecha_inicio ||= DateTime.current.beginning_of_month
+    fecha_termino ||= DateTime.current.end_of_month
+
+    SolicitudReserva.que_reducen_stock.where("fecha_inicio >= ? and fecha_termino <= ?", fecha_inicio, fecha_termino)
+  end  
+
+
+  def self.reset_data
+    raise if !Rails.env.development?
+    DatabaseCleaner.strategy = :truncation
+    DatabaseCleaner.clean
+  end  
+
 end
