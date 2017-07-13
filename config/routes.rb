@@ -13,6 +13,9 @@ Rails.application.routes.draw do
   get '/products/delete_product/:id' => 'products#destroy'
   get '/product_list' => 'products#product_list'
 
+  # SolicitudReservas
+  get "/generar_reserva_admin" => 'solicitud_reservas#generar_reserva_admin'
+
   post '/users/create_user' => 'users#create'
   post '/toggle_user_confirmado' => 'users#toggle_user_confirmado'
 

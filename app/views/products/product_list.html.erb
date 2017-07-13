@@ -7,6 +7,7 @@
 <form action="/solicitud_reservas" method="POST">
   <%= csrf_meta_tag %>
   <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>"/>  
+  
   <table id="tabla_products" class="table table-hover table-striped">
     
     <thead>
@@ -14,20 +15,28 @@
         <th>ID</th>
         <th>Nombre</th>
         <th>Descripcion</th>
-        <th>Cantidad a Solicitar</th>
-        <th>Informacion</th>
+        <th>Categoria</th>
+        <th>Marca</th>
+        <th>Dias</th>
+        <th>N# Disponible</th>
+        <th>N# a Solicitar</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody class="">
       
         <% @products.each do |product| %>
           <tr>
             <td><%= product.id  %></td>
             <td><%= product.nombre %></td>
             <td><%= product.descripcion %></td>
-            <td><input value="0" id="cantidad_pruducto_id_<%= product.id %>" type="number" class="" name="products[<%= product.id %>]"></td>
-
-            <td><a href="/products/product_details/<%= product.id %>" class="btn btn-info btn-sm">Ver Detalles</a></td>
+            <td><%= product.category.nombre %></td>
+            <td><%= product.marca %></td>
+            <td><b><%= product.dias_prestamo %></b></td>
+            <td><b><%= product.stock_disponible %></b></td>
+            
+            <td>
+              <input value="0" id="cantidad_pruducto_id_<%= product.id %>" min="0" max="<%= product.stock_disponible %>" type="number" class="form-control" name="products[<%= product.id %>]">
+            </td>
           </tr>
         <% end %>                    
       

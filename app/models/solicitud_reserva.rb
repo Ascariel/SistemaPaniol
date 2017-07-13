@@ -1,15 +1,20 @@
 class SolicitudReserva < ApplicationRecord
   belongs_to :user
   belongs_to :product
-
+  enum estado: [:pendiente, :aprobada, :prestado, :finalizada, :rechazada, :cancelada, :morosa]
 
   before_save :actualizar_fecha_termino
 
+  scope :que_reducen_stock, lambda { where(estado: ["pendiente", "aprobada", "prestado"]) }
 
+  validates :productos_solicitados, presence: true
 
 
   def actualizar_fecha_termino
-    self.fecha_termino = self.fecha_inicio + self.product.dias_prestamo.days
+      self.fecha_inicio = self.fecha_inicio || DateTime.current
+      self.fecha_termino = self.fecha_inicio + self.product.dias_prestamo.days
+  rescue StandardError => e
+    puts "\n\nError en actualizar_fecha_termino #{e.message}\n\n"
   end
 
 
