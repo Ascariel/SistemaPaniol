@@ -11,7 +11,7 @@ class SolicitudReservasController < ApplicationController
     @user = User.find_by(id: params[:user_id]) || current_user
 
     if !@user.puede_reservar?
-      return redirect_to "/product_list?alert=solo_usuarios_pueden_reservar"
+      return redirect_to("/product_list", notice: "Solo Alumnos y Profesores pueden generar reservas de forma publica") 
     end
 
     @reservas = []
@@ -38,22 +38,27 @@ class SolicitudReservasController < ApplicationController
     session[:reservas_sin_confirmar] = @reservas
     session[:products] = products
 
+    if @reservas.blank?
+      return redirect_to("/product_list", notice: "No se han seleccionado reservas para crear") 
+    end    
+
   end
 
   def confirmar_reservas
     
     reservas = session[:reservas_sin_confirmar] || []
-    return redirect_to "#{current_user.link_generar_reserva}?alert=nada_que_reservar" if reservas.blank?
+    return_url = "#{current_user.link_generar_reserva}"
+    return redirect_to(return_url, notice: "No se han seleccionado reservas para crear") if reservas.blank?
 
     reservas.each do |reserva|
       
       product = Product.find(reserva['product_id'])
+      params_reserva = reserva.compact
 
-      if product.stock_disponible == 0
-        return redirect_to "#{current_user.link_generar_reserva}?alert=stock_acabado"
+      if product.stock_disponible < params_reserva['productos_solicitados']
+        return redirect_to("#{current_user.link_generar_reserva}", notice: "La cantidad solicitada ya no se encuentra disponible. Intentelo nuevamente de acuerdo a los nuevos valores de disponibilidad") 
       end
 
-      params_reserva = reserva.compact
       reserva = SolicitudReserva.create(params_reserva)
     end    
     redirect_to "#{current_user.link_after_reservar}?alert=reserva_exitosa"

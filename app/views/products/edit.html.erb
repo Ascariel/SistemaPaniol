@@ -1,5 +1,9 @@
 <h2>Editar Producto</h2>
 <br>
+<% flash.each do |key, value| %>
+   <div class="flash alert text-warning bg-warning"><%= value %></div>
+<% end %>
+
 
 <div class="row">
   <div class="col-md-5">
@@ -55,3 +59,9 @@
   </div>  
 
 
+<% if params[:alert] == "rebaja_mayor_que_asignado" %>
+  <script type="text/javascript">
+    var msg = "No se puede rebajar el Stock Total a una cantidad menor a <%= @product.try(:stock_no_disponible) %>, ya que esa es la cantidad de productos que ya se encuentran asignados a usuarios"
+    swal("", msg, "warning")
+  </script>
+<% end %>

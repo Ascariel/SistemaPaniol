@@ -1,7 +1,10 @@
 class Product < ApplicationRecord
   has_many :solicitud_reservas
+  has_many :product_details, dependent: :destroy
   belongs_to :category
 
+  before_save :validar_stock
+  scope :not_deleted, lambda { where("deleted IS NOT true") }
 
   def reservas_activas
     reservas_activas = self.solicitud_reservas.merge(SolicitudReserva.que_reducen_stock)
@@ -36,5 +39,15 @@ class Product < ApplicationRecord
     self.stock_total - self.stock_prestado
   end
 
+  def validar_stock
+    stock_asignado = self.stock_no_disponible
 
+    if self.stock_total < stock_asignado
+      raise "no_se_puede_rebajar_mas_de_lo_que_ya_esta_asignado"
+    end
+  end
+
+  def cant_be_deleted
+    self.stock_no_disponible > 0
+  end
 end

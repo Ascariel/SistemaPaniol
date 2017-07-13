@@ -1,10 +1,15 @@
-  <div class="row marketing" style="text-align: center;">
-    <div class="col-lg-12">
-    <a href="/">
-      <%= image_tag("productos1.jpg", :alt => "Listado de Productos") %>   
-    </a>
-    </div>
+<div class="row marketing" style="text-align: center;">
+  <div class="col-lg-12">
+  <a href="/">
+    <%= image_tag("productos1.jpg", :alt => "Listado de Productos") %>   
+  </a>
   </div>
+</div>
+
+<% flash.each do |key, value| %>
+   <div class="flash alert text-warning bg-warning"><%= value %></div>
+<% end %>
+
 
 <a href="/products/new" class="btn btn-success">Crear Producto</a>
 <br><br>
@@ -20,36 +25,35 @@
         <th>Nombre</th>
         <th>Categoria</th>
         <th>Descripcion</th>
-        <th>Marca</th>
         <th>Dias Prestamo</th>
         <th>Stock Total</th>
+        <th>Disponible</th>
         <th>Editar</th>
         <th>Eliminar</th>
       </tr>
     </thead>
     <tbody>
-      
-        <% @products.each do |product| %>
-          <tr>
-            <td><%= product.id  %></td>
-            <td><%= product.nombre %></td>
-            <td><%= product.category.nombre %></td>
-            <td><%= product.descripcion %></td>
-            <td><%= product.marca  %></td>
-            <td><%= product.dias_prestamo %></td>            
-            <td><%= product.stock_total %></td>  
-            <td><a href="/products/<%= product.id %>/edit" class="btn btn-info btn-sm">Editar</a></td>
-            <td><a href="/products/delete_product/<%= product.id %>" class="btn btn-danger btn-sm">Eliminar</a></td>   
-          </tr>
-        <% end %>                    
+      <% @products.each do |product| %>
+        <tr>
+          <td><%= product.id  %></td>
+          <td><%= product.nombre %></td>
+          <td><%= product.category.nombre %></td>
+          <td><%= product.descripcion %></td>
+          <td><%= product.dias_prestamo %></td>            
+          <td><%= product.stock_total %></td> 
+          <td><%= product.stock_disponible %></td>  
+          <td><a href="/products/<%= product.id %>/edit" class="btn btn-info btn-sm">Editar</a></td>
+          <td><a href="/products/delete_product/<%= product.id %>" class="btn btn-danger btn-sm">Eliminar</a></td>   
+        </tr>
+      <% end %>                    
     </tbody>
   </table>
 
 
-  <br>
+  
 
 </form>
-
+<br>
 
  
 
