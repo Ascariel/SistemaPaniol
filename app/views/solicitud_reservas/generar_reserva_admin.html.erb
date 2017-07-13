@@ -49,7 +49,7 @@
 <h3 id="nombre_usuario_seleccionado"><i>Elija usuario a quien se le asignaran las reservas que decida crear</i></h3>
 <hr>
 
-<form id="generar_reserva_form" action="/solicitud_reservas" method="POST">
+<form id="generar_reserva_form" action="/solicitud_reservas/reservas_preview" method="POST">
   <%= csrf_meta_tag %>
   <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>"/>
   <input type="hidden" name="user_id" value="" id="input_usuario_seleccionado">  
