@@ -16,18 +16,22 @@
   <body>
 
 
-    <div class="container">
+    <div class="container" style="min-height: 600px;">
       <%= render partial: "/layouts/navbars/navbar" %>
 
       <%= yield %>
 
-      <%= render partial: "/layouts/footer" %>
+
 
       <% if content_for?(:javascript) %>
           <%= yield :javascript %>
       <% end %>
 
     </div>
+
+    <div class="container">
+      <%= render partial: "/layouts/footer" %>
+    </div>    
 
     <script type="text/javascript">
       

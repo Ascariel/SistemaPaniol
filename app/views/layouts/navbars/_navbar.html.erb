@@ -17,7 +17,11 @@
 
     <div class="navbar-header">
       <a href="/" class="navbar-brand nav-text-color" ><b>Sistema Pañol Duoc</b></a>
+
+
     </div>
+
+
 
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -57,13 +61,12 @@
           </li>  
           <li class="nav-item">
             <a class="nav-link" href="/users/<%= @user.try(:id) || User.alumnos.first.try(:id) %>">Mis Reservas</a>
-          </li>        
-
+          </li>  
         <% end %>
 
-
-
         <% if current_user.present? %>
+          <li style="color: white;text-transform: uppercase;padding-top: 15px;">
+          <%= current_user.rol %> | <%= current_user.nombre %> <%= current_user.apellido %> </li>        
           <li class="nav-item">
             <a class="nav-link " href="/users/sign_out" data-method="delete">Salir</a>
           </li>

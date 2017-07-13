@@ -1,7 +1,7 @@
 <h2>Iniciar Sesion</h2>
 <br>
 
-<div class="row" style="margin-bottom: 30px;">
+<div class="row">
   <div class="col-md-1"></div>  
   <div class="col-md-4 login-box">
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
@@ -31,16 +31,8 @@
   </div>
 
   <div class="col-md-7">
-    <span style="margin-left: 23px;">
-<iframe class="servicios" src="http://www.duoc.cl/biblioteca/#block-views-menu-servicios-block" width="600" height="230px"  scrolling="no" frameborder="0"></iframe>
-</span>
-
+      <%= image_tag("login1.jpg", :alt => "Estudia en DuocUC") %>   
   </div>  
 
-<!--   <div class="col-md-4">
-    <a href="http://www.duoc.cl/biblioteca/bases-22o-concurso-de-cuentos-duoc-uc">
-          <%= image_tag("side-img-1.png", :alt => "Concurso") %>
-    </a>        
-  </div>  --> 
 </div>
 
