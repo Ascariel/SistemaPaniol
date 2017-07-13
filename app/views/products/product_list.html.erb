@@ -14,7 +14,7 @@
     <form action="/solicitud_reservas/reservas_preview" method="POST">
       <%= csrf_meta_tag %>
       <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>"/>  
-      <input type="hidden" name="user_id" value="<%= current_user.id %>">  
+      <input type="hidden" name="user_id" value="<%= current_user.try(:id) %>">  
 
       <table id="tabla_products" class="table table-hover table-striped">  
         <thead>
