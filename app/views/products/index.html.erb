@@ -42,15 +42,12 @@
           <td><%= product.dias_prestamo %></td>            
           <td><%= product.stock_total %></td> 
           <td><%= product.stock_disponible %></td>  
-          <td><a href="/products/<%= product.id %>/edit" class="btn btn-info btn-sm">Editar</a></td>
-          <td><a href="/products/delete_product/<%= product.id %>" class="btn btn-danger btn-sm">Eliminar</a></td>   
+          <td><a href="/products/<%= product.id %>/edit" class="btn btn-warning btn-sm btn-block">Editar</a></td>
+          <td><a href="/products/delete_product/<%= product.id %>" class="btn btn-danger btn-sm btn-block">Eliminar</a></td>   
         </tr>
       <% end %>                    
     </tbody>
   </table>
-
-
-  
 
 </form>
 <br>
@@ -64,9 +61,11 @@
       $(document).ready(function() {
 
           $('#tabla_products').DataTable({
-            "dom": "f"
+          "dom": "f",
+          "pageLength": 300,
+          "order": [[0, 'desc']],
+          'responsive': true
           });
-
 
           $(".reservar_producto").click(function(ev) {
             /* Act on the event */

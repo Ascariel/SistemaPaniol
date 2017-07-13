@@ -56,7 +56,10 @@
       $(document).ready(function() {
 
         $('#tabla_reservas').DataTable({
-          "dom": "f"
+          "dom": "f",
+          "pageLength": 300,
+          "order": [[0, 'desc']],
+          'responsive': true
         });
 
       });      
