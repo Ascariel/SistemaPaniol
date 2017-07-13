@@ -1,53 +1,55 @@
-<br>
-<div class="jumbotron" style="background-color: rgba(169, 204, 198, 0.46)!important">
-  <h1 class="display-3 text-center">Listado de Productos</h1><br>
-  <p class="lead text-center">Desde aca podras hacer busquedas de materiales, generar y manejar reservas y mucho mas</p>
-</div>
 
-<form action="/solicitud_reservas" method="POST">
-  <%= csrf_meta_tag %>
-  <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>"/>  
-  <table id="tabla_products" class="table table-hover table-striped">
-    
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Nombre</th>
-        <th>Descripcion</th>
-        <th>Cantidad a Solicitar</th>
-        <th>Informacion</th>
-      </tr>
-    </thead>
-    <tbody>
-      
-        <% @products.each do |product| %>
-          <tr>
-            <td><%= product.id  %></td>
-            <td><%= product.nombre %></td>
-            <td><%= product.descripcion %></td>
-            <td><input value="0" id="cantidad_pruducto_id_<%= product.id %>" type="number" class="" name="products[<%= product.id %>]"></td>
+  <div class="row marketing" style="text-align: center;">
+    <div class="col-lg-12">
+    <a href="/">
+      <%= image_tag("reservas1.jpg", :alt => "Listado de Reservas") %>   
+    </a>
+    </div>
+  </div>
 
-            <td><a href="/products/product_details/<%= product.id %>" class="btn btn-info btn-sm">Ver Detalles</a></td>
-          </tr>
-        <% end %>                    
-      
-      
-    </tbody>
-  </table>
+  <div class="row">
+    <div class="col-md-12" style="width: 89%;margin-left: 6%;">
+      <h4 class="grey">Listado de Prodcutos</h4>
+      <form action="/solicitud_reservas" method="POST">
+        <%= csrf_meta_tag %>
+        <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>"/>  
+        <table id="tabla_products" class="table table-hover table-striped">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nombre</th>
+              <th>Descripcion</th>
+              <th>Cantidad a Solicitar</th>
+              <th>Informacion</th>
+            </tr>
+          </thead>
+          <tbody>
+            
+              <% @products.each do |product| %>
+                <tr>
+                  <td><%= product.id  %></td>
+                  <td><%= product.nombre %></td>
+                  <td><%= product.descripcion %></td>
+                  <td><input value="0" id="cantidad_pruducto_id_<%= product.id %>" type="number" class="" name="products[<%= product.id %>]"></td>
 
-
-  <br>
-
-  <div>
-    <button type="submit" class="btn btn-success btn-block" >Reservar</button>
-  </div> 
-
-</form>
+                  <td><a href="/products/product_details/<%= product.id %>" class="btn btn-info btn-sm">Ver Detalles</a></td>
+                </tr>
+              <% end %>                    
+            
+            
+          </tbody>
+        </table>
 
 
+        <br>
 
+        <div class="col-md-4 pull-right">
+          <button type="submit" class="btn btn-success btn-block" >Reservar</button>
+        </div> 
+      </form>        
+    </div>
+  </div>
 
- 
 
 <% content_for :javascript do %>
 
@@ -77,8 +79,7 @@
             alert("Has reservado "+cantidad_reservada+" unidades de "+nombre_producto)
           });
       });      
-    </script>     
-
+  </script>
 
  <% end %>
 
