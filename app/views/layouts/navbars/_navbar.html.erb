@@ -64,7 +64,7 @@
             <a class="nav-link" href="/product_list">Generar Reserva</a>
           </li>  
           <li class="nav-item">
-            <a class="nav-link" href="/users/<%= @user.try(:id) || User.alumnos.first.try(:id) %>">Mis Reservas</a>
+            <a class="nav-link" href="/users/<%= current_user.id %>">Mis Reservas</a>
           </li>  
         <% end %>
 

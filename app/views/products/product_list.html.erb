@@ -11,12 +11,12 @@
   <div class="col-md-12" style="width: 89%;margin-left: 6%;">
     <h4 class="grey">Listado de Prodcutos</h4>
 
-    <form action="/solicitud_reservas" method="POST">
+    <form action="/solicitud_reservas/reservas_preview" method="POST">
       <%= csrf_meta_tag %>
       <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>"/>  
-      
-      <table id="tabla_products" class="table table-hover table-striped">
-        
+      <input type="hidden" name="user_id" value="<%= current_user.id %>">  
+
+      <table id="tabla_products" class="table table-hover table-striped">  
         <thead>
           <tr>
             <th>ID</th>

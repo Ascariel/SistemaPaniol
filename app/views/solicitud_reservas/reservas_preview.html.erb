@@ -5,7 +5,6 @@
     
     <thead>
       <tr>
-        <th>ID</th>
         <th>Producto</th>
         <th>Cantidad</th>
         <th>Dias Prestamo</th>
@@ -16,7 +15,6 @@
       
       <% @reservas.each do |reserva| %>
         <tr>
-          <td><%= reserva.id  %></td>
           <td><%= reserva.product.nombre %></td>
           <td><%= reserva.productos_solicitados %></td>
           <td><%= reserva.product.dias_prestamo %></td>
@@ -30,10 +28,10 @@
   <div class="row">
     <div class="col-md-6"></div>
     <div class="col-md-3">
-      <a href="/products?alert=reserva_cancelada" class="btn btn-danger btn-block">Cancelar</a>
+      <a href="/solicitud_reservas/cancelar_reservas?alert=reserva_cancelada" class="btn btn-danger btn-block">Descartar Reservas</a>
     </div>    
     <div class="col-md-3">
-      <a href="/users/<%= @user.id %>?alert=reserva_exitosa" class="btn btn-success btn-block">Confirmar Reserva</a>
+      <a href="/solicitud_reservas/confirmar_reservas" _method="post" class="btn btn-success btn-block">Confirmar Reservas</a>
     </div>
 
   </div>

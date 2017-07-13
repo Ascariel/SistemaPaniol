@@ -29,6 +29,22 @@ class User < ApplicationRecord
     self.solicitud_reservas.merge(SolicitudReserva.que_reducen_stock)
   end
 
+  def link_generar_reserva
+    if self.rol == "admin"
+      return "/generar_reserva_admin"
+    else
+      return "/product_list"
+    end
+  end
+
+  def link_after_reservar
+    if self.rol == "admin"
+      return "/solicitud_reservas"
+    else
+      return "/users/#{self.id}"
+    end
+  end
+
   def self.admins
     return User.where("rol = 'admin' ")
   end

@@ -7,9 +7,57 @@ class SolicitudReservasController < ApplicationController
     @estados = ['pendiente', 'aprobada', 'prestado', 'finalizada', 'rechazada', 'cancelada', 'morosa']
   end
 
+  def reservas_preview
+    @user = User.find_by(id: params[:user_id]) || current_user
+
+    if !@user.puede_reservar?
+      return redirect_to "/product_list?alert=solo_usuarios_pueden_reservar"
+    end
+
+    @reservas = []
+    products = params[:products] || session[:products] || []
+
+    products.each do |product_id, cantidad|
+
+      next if cantidad.to_i <= 0
+
+      product = Product.find(product_id)
+      
+      params_reserva = {
+        user_id: @user.id, 
+        product_id: product.id, 
+        productos_solicitados: cantidad, 
+        fecha_inicio: DateTime.current, 
+        estado: "pendiente"        
+      }
+
+      reserva = SolicitudReserva.new(params_reserva)
+      @reservas << reserva
+    end
+
+    session[:reservas_sin_confirmar] = @reservas
+    session[:products] = products
+
+  end
+
   def confirmar_reservas
-    @reservas = SolicitudReserva.none
-    @user = User.alumnos.first
+    
+    reservas = session[:reservas_sin_confirmar] || []
+    return redirect_to "#{current_user.link_generar_reserva}?alert=nada_que_reservar" if reservas.blank?
+
+    reservas.each do |reserva|
+      
+      product = Product.find(reserva['product_id'])
+
+      if product.stock_disponible == 0
+        return redirect_to "#{current_user.link_generar_reserva}?alert=stock_acabado"
+      end
+
+      params_reserva = reserva.compact
+      reserva = SolicitudReserva.create(params_reserva)
+    end    
+    redirect_to "#{current_user.link_after_reservar}?alert=reserva_exitosa"
+
   end
 
   def generar_reserva_admin
@@ -28,36 +76,19 @@ class SolicitudReservasController < ApplicationController
     return render json: { success: true, reserva: reserva }
   end
 
-  def cancelar_reserva
+  def cancelar_reserva_por_correo
     reserva = SolicitudReserva.find params[:id]
     reserva.cancelada!
-    render json: {success: true}
+    return redirect_to "/?alert=reserva_cancelada"
+  end
+
+  def cancelar_reservas
+    session[:reservas_sin_confirmar] = nil
+    session[:products] = nil    
+    redirect_to "#{current_user.link_generar_reserva}?alert=reserva_cancelada"
   end
 
   def create
-    @user = User.find_by(id: params[:user_id]) || current_user
-
-    if !@user.puede_reservar?
-      return redirect_to "/product_list?alert=solo_usuarios_pueden_reservar"
-    end
-
-    @reservas = []
-    products = params[:products]
-
-    selected_products = products.select{|llave, valor| valor.to_i > 0 }
-    puts "#{selected_products}"
-
-
-    selected_products.each do |llave, valor|
-
-      product = Product.find(llave)
-      reserva = SolicitudReserva.create(user_id: @user.id, product_id: product.id, productos_solicitados: valor, 
-                                        fecha_inicio: DateTime.current, estado: "pendiente")
-      @reservas << reserva
-    end
-
-    render :confirmar_reservas
-
   end
 
 

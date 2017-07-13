@@ -19,7 +19,7 @@
 
     <% if Rails.env.production? %>
       <p>Si deseas cancelar esta reserva, hace click aqui:</p>
-      <a href="https://sheltered-brushlands-64231.herokuapp.com/cancelar_reserva?id=<%= @reserva.id %>">Cancelar Reserva</a>
+      <a href="https://sheltered-brushlands-64231.herokuapp.com/cancelar_reserva_por_correo?id=<%= @reserva.id %>">Cancelar Reserva</a>
     <% end %>
 
     <p>
