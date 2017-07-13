@@ -14,7 +14,7 @@ class User < ApplicationRecord
   end
 
   def nombre_completo
-    "#{self.nombre} #{self.apellido}"
+    "#{self.nombre.try(:capitalize)} #{self.apellido.try(:capitalize)}"
   end
 
   def set_rol

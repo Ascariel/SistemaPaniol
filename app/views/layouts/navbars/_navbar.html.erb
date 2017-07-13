@@ -69,8 +69,9 @@
         <% end %>
 
         <% if current_user.present? %>
-          <li style="color: white;text-transform: uppercase;padding-top: 15px;">
-          <%= current_user.rol %> | <%= current_user.nombre %> <%= current_user.apellido %> </li>        
+          <li style="color: white;padding-top: 15px;">
+            <small><%= current_user.rol.try(:capitalize) %>: <%= current_user.nombre_completo %> </small>
+            </li>        
           <li class="nav-item">
             <a class="nav-link " href="/users/sign_out" data-method="delete">Salir</a>
           </li>
