@@ -58,7 +58,7 @@
           
         </li>          
 
-        <% elsif current_user.try(:rol) == "alumno" %>
+        <% elsif ["alumno", "profesor"].include?(current_user.try(:rol)) %>
 
           <li class="nav-item">
             <a class="nav-link" href="/product_list">Generar Reserva</a>

@@ -21,6 +21,7 @@
               <th>Fecha Inicio</th>
               <th>Fecha Termino</th>
               <th>Usuario</th>
+              <th>Cancelar</th>
             </tr>
           </thead>
           <tbody>
@@ -35,6 +36,7 @@
                 <td><%= reserva.fecha_inicio.to_date %></td>
                 <td><%= reserva.fecha_termino.to_date %></td>
                 <td><%= @user.email %></td>
+                <td><button data-reserva-id="<%= reserva.id %>" class="btn btn-danger cancelar_solicitud">Cancelar</button></a></td>
               </tr>
             <% end %>                    
           </tbody>
@@ -59,8 +61,26 @@
           "dom": "f",
           "pageLength": 300,
           "order": [[0, 'desc']],
-          'responsive': true
         });
+
+        $(".cancelar_solicitud").on('click', function(){
+
+          var btn = $(this)
+
+          var reserva_id = btn.data("reserva-id")
+
+          console.log(reserva_id)
+
+          $.ajax({
+            url: '/cancelar_reserva_por_correo',
+            type: 'GET',
+            data: {id: reserva_id}
+          })
+          .done(function(response) {
+            console.log(response);
+            window.location = "?estado_actualizado"
+          })
+        })        
 
       });      
     </script>     
