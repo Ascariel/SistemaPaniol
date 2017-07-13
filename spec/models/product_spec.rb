@@ -42,5 +42,9 @@ RSpec.describe Product, type: :model do
       end              
           
     end
+
+    # context "Con reservas activas y con stock total 20" do 
+      
+    # end
   end
 end

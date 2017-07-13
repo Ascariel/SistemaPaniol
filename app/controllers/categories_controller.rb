@@ -18,6 +18,9 @@ class CategoriesController < ApplicationController
   def create
     @category = Category.create!(category_params)
     redirect_to "/categories"
+
+  rescue StandardError => e
+    return redirect_to "/categories/new", notice: "Nombre de Categoria ya existe"
   end
 
   def update

@@ -1,3 +1,7 @@
+<!-- <p id="notice"><%#= notice %></p> -->
+  <% flash.each do |key, value| %>
+     <div class="flash alert text-warning bg-warning"><%= value %></div>
+  <% end %>
 
 <div class="row marketing" style="text-align: center;">
   <div class="col-lg-12">
