@@ -30,7 +30,6 @@ class Product < ApplicationRecord
   end
 
   def puede_generar_reservas?
-    puts "Stock Disponible Para Reservas: #{self.stock_disponible}"
     self.stock_disponible > 0
   end
 
