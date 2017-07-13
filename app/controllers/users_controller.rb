@@ -36,9 +36,9 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      return redirect_to '/users?usuario_creado'
+      return redirect_to '/users?usuario_creado', notice: 'Usuario Creado Exitosamente!'
     else
-      return redirect_to '/users?usuario_no_creado'
+      return redirect_to '/users?usuario_no_creado', notice: "No se ha podido crear el usuario debido a los siguientes errores: #{@user.errors.full_messages.join(', ')}"
     end
   end
 
@@ -61,7 +61,7 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     respond_to do |format|
-      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
+      format.html { redirect_to users_url, notice: 'Usuario Eliminado' }
       format.json { head :no_content }
     end
   end

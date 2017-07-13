@@ -13,14 +13,14 @@
     <form action="/solicitud_reservas" method="POST">
       <%= csrf_meta_tag %>
       <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>"/>  
-      <table id="tabla_products" class="table table-hover table-striped">
+      <table id="tabla_categories" class="table table-hover table-striped">
         
         <thead>
           <tr>
             <th>ID</th>
             <th>Nombre</th>
             <th>Descripcion</th>
-            <th></th>
+            <th>Productos</th>
             <th></th>
             <th></th>
           </tr>
@@ -32,8 +32,9 @@
                 <td><%= category.id  %></td>
                 <td><%= category.nombre %></td>
                 <td><%= category.descripcion %></td>
-                <td><a href="/categories/<%= category.id %>/edit" class="btn btn-info btn-sm">Editar</a></td>
-                <td><a href="/categories/delete_category/<%= category.id %>" class="btn btn-danger btn-sm">Eliminar</a></td>            
+                <td><%= category.products.count %></td>
+                <td><a href="/categories/<%= category.id %>/edit" class="btn btn-warning btn-sm btn-block">Editar</a></td>
+                <td><a href="/categories/delete_category/<%= category.id %>" class="btn btn-danger btn-sm btn-block">Eliminar</a></td>            
               </tr>
             <% end %>                    
           
@@ -57,8 +58,11 @@
             swal("Elemento No Eliminado", "Asegurese de eliminar todos los elementos asociados antes de intentar eliminar este elemento", "success")
           <% end %>
 
-          $('#tabla_categorys').DataTable({
-            "dom": "f"
+          $('#tabla_categories').DataTable({
+            "dom": "f",
+            "pageLength": 300,
+            "order": [[0, 'desc']],
+            'responsive': true          
           });
 
       });      

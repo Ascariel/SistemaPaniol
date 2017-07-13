@@ -31,7 +31,7 @@
                 <td><%= reserva.product.nombre %></td>
                 <td><%= reserva.productos_solicitados %></td>
                 <td><%= reserva.product.dias_prestamo %></td>
-                <td><i><%= reserva.estado.try(:capitalize) %></i></td>
+                <td class="<%= reserva.color_texto_estado %>"><b><i><%= reserva.estado.try(:capitalize) %></i></b></td>
                 <td><%= reserva.fecha_inicio.to_date %></td>
                 <td><%= reserva.fecha_termino.to_date %></td>
                 <td><%= @user.email %></td>
@@ -56,7 +56,10 @@
       $(document).ready(function() {
 
         $('#tabla_reservas').DataTable({
-          "dom": "f"
+          "dom": "f",
+          "pageLength": 300,
+          "order": [[0, 'desc']],
+          'responsive': true
         });
 
       });      

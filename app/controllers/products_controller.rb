@@ -4,7 +4,7 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    @products = Product.all
+    @products = Product.not_deleted
   end
 
   def product_list
@@ -44,19 +44,30 @@ class ProductsController < ApplicationController
   # PATCH/PUT /products/1
   # PATCH/PUT /products/1.json
   def update
-
-    alert = 'producto_no_editado'
+    msg = 'Producto no editado'
     if @product.update(product_params)
-      alert = 'producto_editado'  
+      msg = 'Producto editado'  
     end
 
-    redirect_to "/products?alert=#{alert}"
+    return redirect_to "/products", notice: msg
+  rescue StandardError => e
+
+    if e.message == "no_se_puede_rebajar_mas_de_lo_que_ya_esta_asignado"
+      msg = "No se puede rebajar el Stock Total a una cantidad menor a #{@product.try(:stock_no_disponible)}, ya que esa es la cantidad de productos que aun se encuentran asignados a usuarios"
+      edit_url = "/products/#{@product.id}/edit"
+      return redirect_to edit_url, notice: msg
+    end
   end
 
   # DELETE /products/1
   # DELETE /products/1.json
   def destroy
-    @product.destroy
+    if @product.cant_be_deleted
+      return redirect_to products_url, notice: 'No se puede eliminar un producto con reservas activas'
+    end
+
+    @product.update deleted: true
+
     respond_to do |format|
       format.html { redirect_to products_url, notice: 'Producto Eliminado' }
       format.json { head :no_content }

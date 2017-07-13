@@ -66,6 +66,10 @@
           <li class="nav-item">
             <a class="nav-link" href="/users/<%= current_user.id %>">Mis Reservas</a>
           </li>  
+        <% elsif current_user.try(:rol) == "director" %>
+          <li class="nav-item">
+            <a class="nav-link" href="/users/<%= current_user.id %>">Ver Reportes</a>
+          </li>            
         <% end %>
 
         <% if current_user.present? %>

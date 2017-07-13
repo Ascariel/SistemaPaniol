@@ -10,6 +10,20 @@ class SolicitudReserva < ApplicationRecord
   validates :productos_solicitados, presence: true
 
 
+  def color_texto_estado
+    if self.aprobada? || self.prestado?
+      'text-success'
+    elsif self.pendiente?
+      "text-warning"
+    elsif self.rechazada? || self.cancelada? || self.morosa?
+      "text-danger"
+    elsif self.finalizada?
+      "text-info"
+    else
+      ""
+    end
+  end
+
   def actualizar_fecha_termino
       self.fecha_inicio = self.fecha_inicio || DateTime.current
       self.fecha_termino = self.fecha_inicio + self.product.dias_prestamo.days

@@ -6,7 +6,8 @@
     <thead>
       <tr>
         <th>Producto</th>
-        <th>Cantidad</th>
+        <th>Cantidad Solicitada</th>
+        <th>Cantidad Disponible</th>
         <th>Dias Prestamo</th>
         <th>Usuario</th>
       </tr>
@@ -14,9 +15,12 @@
     <tbody>
       
       <% @reservas.each do |reserva| %>
-        <tr>
+        <% stock_valido =  reserva.product.stock_disponible < reserva.productos_solicitados ? 'bg-danger' : "bg-success" %>
+
+        <tr class="<%= stock_valido %>">
           <td><%= reserva.product.nombre %></td>
           <td><%= reserva.productos_solicitados %></td>
+          <td><%= reserva.product.stock_disponible %></td>
           <td><%= reserva.product.dias_prestamo %></td>
           <td><%= @user.email %></td>
         </tr>
