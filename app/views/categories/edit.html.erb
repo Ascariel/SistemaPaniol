@@ -1,25 +1,40 @@
-<h1>Editing Category</h1>
+<h2>Editar Categoría</h2>
+<br>
 
-<form class="form" method="POST" action="/categories/<%= @category.id %>">
-  <input type="hidden" name="_method" value="patch">
-  <input type="hidden" name="authenticity_token" value="sERFm6fNwz3b8TlGt/qJw6uiszpdwRbn1kelLmp8avCQnJz1H0+APQ8hqYgE3aO0HhEGMn27MwWjpeHAArpxcA==">
+<div class="row">
+  <div class="col-md-5">
 
-  <div class="form-group">
-    <label >Nombre:</label>
-    <input type="text" class="form-control" name="category[nombre]" value="<%= @category.nombre %>">
+    <form class="form" method="POST" action="/categories/<%= @category.id %>">
+      <input type="hidden" name="_method" value="patch">
+      <input type="hidden" name="authenticity_token" value="sERFm6fNwz3b8TlGt/qJw6uiszpdwRbn1kelLmp8avCQnJz1H0+APQ8hqYgE3aO0HhEGMn27MwWjpeHAArpxcA==">
+
+      <div class="form-group">
+        <label >Nombre:</label>
+        <input type="text" class="form-control" name="category[nombre]" value="<%= @category.nombre %>">
+      </div>
+
+
+      <div class="form-group">
+        <label >Descripcion:</label>
+        <input type="text" class="form-control" name="category[descripcion]" value="<%= @category.descripcion %>">
+      </div>
+
+
+      <br>
+      <button type="submit" class="form-control btn btn-success">Guardar</button>  
+    </form>
+
+
+    <%= link_to 'Show', @category %> |
+    <%= link_to 'Back', categories_path %>
+
   </div>
 
-
-  <div class="form-group">
-    <label >Descripcion:</label>
-    <input type="text" class="form-control" name="category[descripcion]" value="<%= @category.descripcion %>">
+  <div class="col-md-7">
+    <%= image_tag("login1.jpg", :alt => "Estudia en DuocUC") %>   
   </div>
 
-
-  <br>
-  <button type="submit" class="form-control btn btn-success">Guardar</button>  
-</form>
+</div>
 
 
-<%= link_to 'Show', @category %> |
-<%= link_to 'Back', categories_path %>
+    
