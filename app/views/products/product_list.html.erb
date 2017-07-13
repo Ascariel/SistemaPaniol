@@ -75,7 +75,9 @@
       $(document).ready(function() {
 
         $('#tabla_products').DataTable({
-          "dom": "f"
+          "dom": "f",
+          "pageLength": 300,
+          "order": [[0, 'desc']]          
         });
       });      
   </script>

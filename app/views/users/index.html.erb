@@ -28,7 +28,7 @@
     <% @users.each do |user| %>
       
       <% confirmado = user.confirmed_at.present? %>
-      <% texto_autorizacion = confirmado ? 'Autorizar' : 'Desautorizar' %>
+      <% texto_autorizacion = !confirmado ? 'Autorizar' : 'Desautorizar' %>
       <% clase_btn = confirmado ? 'info' : 'default' %>
 
       <tr>
