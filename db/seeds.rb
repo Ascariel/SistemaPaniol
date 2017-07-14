@@ -8,24 +8,8 @@ user = User.create(email: "pablo+22@propertysimple.com", rut: "alumno2", nombre:
 user = User.create(email: "pablo+33@propertysimple.com", rut: "profesor", nombre: "Profesor ", apellido: "Apellido Profesor", rol: "profesor", password: "passpass", password_confirmation: "passpass", confirmed_at: Date.current, confirmation_sent_at: Date.current )
 user = User.create(email: "pablo+44@propertysimple.com", rut: "director", nombre: "Director", apellido: "Apellido Alumno", rol: "director", password: "passpass", password_confirmation: "passpass", confirmed_at: Date.current, confirmation_sent_at: Date.current )
 
-# category = Category.create(nombre: "Libros", descripcion: "Coleccion de libros fisicos")
-
-# product = Product.create(nombre: "El Principito", descripcion: "Libro de fantasia", category_id: category.id)
-# product = Product.create(nombre: "Diccionario Español", descripcion: "Libro educacional", category_id: category.id)
-# product = Product.create(nombre: "Enciclopedia", descripcion: "Libro educacional", category_id: category.id)
-# product = Product.create(nombre: "Game of Thrones", descripcion: "Libro de fantasiaHistoria", category_id: category.id)
-
-# category2 = Category.create(nombre: "Tecnologia", descripcion: "Coleccion de articulos de tecnologia")
-
-# product = Product.create(nombre: "Notebook", descripcion: "Computador Ultima Generacion", category_id: category2.id)
-# product = Product.create(nombre: "Mouse", descripcion: "Articulo de Utilidad", category_id: category2.id)
-# product = Product.create(nombre: "Parlantes", descripcion: "Articulo de Utilidad", category_id: category2.id)
-# product = Product.create(nombre: "Audifonos", descripcion: "Articulo de Utilidad", category_id: category2.id)    
 
 
-
-# user = User.create(email: "pablocangas@gmail.com", rut: "admin", nombre: "Admin", apellido: "Apellido Admin", rol: "admin", password: "passpass", password_confirmation: "passpass", confirmed_at: Date.current, confirmation_sent_at: Date.current )
-# user = User.create(email: "pablo@propertysimple.com", rut: "alumno", nombre: "Alumno", apellido: "Apellido Alumno", rol: "alumno", password: "passpass", password_confirmation: "passpass", confirmed_at: Date.current, confirmation_sent_at: Date.current )
 user = User.create(email: "andrea.saravia.c@gmail.com", rut: "6062545-k", nombre: "Verónica", apellido: "Canals", rol: "profesor", password: "passpass", password_confirmation: "passpass", confirmed_at: Date.current, confirmation_sent_at: Date.current )
 user = User.create(email: "andr.saravia@alumnos.duoc.cl", rut: "13549965-k", nombre: "Andrea", apellido: "Saravia", rol: "alumno", password: "passpass", password_confirmation: "passpass", confirmed_at: Date.current, confirmation_sent_at: Date.current )
 user = User.create(email: "asaravia@outlook.com", rut: "13549965-0", nombre: "Miguel", apellido: "Saravia", rol: "admin", password: "passpass", password_confirmation: "passpass", confirmed_at: Date.current, confirmation_sent_at: Date.current )
@@ -39,11 +23,6 @@ p4 = Provider.create nombre: "Proveedor 4"
 p5 = Provider.create nombre: "Proveedor 5"
 
 
-
-
-# user = User.create(email: "pablocangas@gmail.com", rut: "admin", nombre: "Admin", apellido: "Apellido Admin", rol: "admin", password: "passpass", password_confirmation: "passpass", confirmed_at: Date.current, confirmation_sent_at: Date.current )
-# user = User.create(email: "pablo@propertysimple.com", rut: "alumno", nombre: "Alumno", apellido: "Apellido Alumno", rol: "alumno", password: "passpass", password_confirmation: "passpass", confirmed_at: Date.current, confirmation_sent_at: Date.current )
-
 category = Category.create(nombre: "Libros", descripcion: "Coleccion de libros fisicos", provider_id: p1.id)
 
 product = Product.create(nombre: "Data Center", descripcion: "Base de Datos", category_id: category.id)
@@ -56,6 +35,7 @@ product = Product.create(nombre: "Python Facil", descripcion: "Lenguajes de Prog
 product = Product.create(nombre: "Arduino, guía fácil", descripcion: "Lenguakes de Programación", category_id: category.id)
 product = Product.create(nombre: "Rails", descripcion: "Lenguajes de Programación", category_id: category.id)
 product = Product.create(nombre: "JQuery Mobile", descripcion: "Android", category_id: category.id)
+
 
 
 category2 = Category.create(nombre: "Audiovisual", descripcion: "Coleccion de articulos de tecnologia", provider_id: p2.id)
@@ -93,5 +73,6 @@ product = Product.create(nombre: "Segunda Guerra Mundial", descripcion: "DVD Doc
 product = Product.create(nombre: "Conspiraciones en la historia", descripcion: "DVD Documental Histórico", category_id: category5.id)
 product = Product.create(nombre: "El Cosmos", descripcion: "DVD Documental Astronómico", category_id: category5.id)
 product = Product.create(nombre: "Game of Thrones T 1-2-3", descripcion: "DVD Serie ficción", category_id: category5.id)
+
 
 
