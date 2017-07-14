@@ -16,11 +16,11 @@ user = User.create(email: "asaravia@outlook.com", rut: "13549965-0", nombre: "Mi
 
 
 
-p1 = Provider.create nombre: "Proveedor 1"
-p2 = Provider.create nombre: "Proveedor 2"
-p3 = Provider.create nombre: "Proveedor 3"
-p4 = Provider.create nombre: "Proveedor 4"
-p5 = Provider.create nombre: "Proveedor 5"
+p1 = Provider.create nombre: "Santartica"
+p2 = Provider.create nombre: "Sonyc"
+p3 = Provider.create nombre: "Ofimarketeo"
+p4 = Provider.create nombre: "Libreria Internacional"
+p5 = Provider.create nombre: "Blockbuster"
 
 
 category = Category.create(nombre: "Libros", descripcion: "Coleccion de libros fisicos", provider_id: p1.id)

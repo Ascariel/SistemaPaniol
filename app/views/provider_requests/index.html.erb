@@ -1,0 +1,82 @@
+
+<h3 class="">Solicitudes Proveedor</h3>
+<br><br>
+
+<div class="row">
+
+  <div class="col-md-12">
+      
+    <table id="tabla_reservas" class="table table-hover table-striped">
+      
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Category</th>
+          <th>Producto</th>
+          <th>Cantidad Solicitada</th>
+          <th>Fecha Solicitud</th>
+          <th>ID Proveedor</th>
+          <th>Proveedor</th>
+          <th>Accion</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+        <% @provider_requests.each do |provider_request| %>
+
+          
+          <% reserva = provider_request.solicitud_reserva %>
+          <% product = reserva.product %>  
+              
+          <tr>
+            <td><%= provider_request.id  %></td>
+            <td><%= product.category.nombre %></td>
+            <td><%= reserva.product.nombre %></td>
+            <td><%= provider_request.cantidad %></td>
+            <td><%= provider_request.created_at.try :to_date %></td>
+            <td><%= product.category.provider_id %></td>
+            <td><%= product.category.provider.nombre %></td>
+            <td><button data-proveedor="<%= product.category.provider.nombre %>" class="btn btn-warning btn-xs btn-block pedir_proveedor">Pedir</button></td>
+            
+          </tr>
+        <% end %>                    
+      
+      </tbody>
+    </table>
+  </div>
+
+
+
+
+</div>
+
+
+
+<% content_for :javascript do %>
+
+  <script type="text/javascript">
+
+      $(document).ready(function() {
+
+        $('#tabla_reservas').DataTable({
+          "dom": "f",
+          "pageLength": 300,
+          "order": [[0, 'desc']]
+        });
+
+        $(".pedir_proveedor").click(function(){
+          var btn = $(this)
+          var proveedor = btn.data("proveedor")
+
+          swal("", "Producto Solicitado a: " + proveedor, "success")
+        })
+
+ 
+
+
+      });      
+    </script>     
+
+
+ <% end %>
+

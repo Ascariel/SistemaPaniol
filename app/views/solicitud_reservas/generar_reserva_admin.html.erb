@@ -81,7 +81,7 @@
             <td><b><%= product.stock_disponible %></b></td>
             
             <td>
-              <input value="0" id="cantidad_pruducto_id_<%= product.id %>" min="0" max="<%= product.stock_disponible %>" type="number" class="form-control" name="products[<%= product.id %>]">
+              <input value="0" id="cantidad_pruducto_id_<%= product.id %>" type="number" class="form-control" name="products[<%= product.id %>]">
             </td>
           </tr>
         <% end %>                    
