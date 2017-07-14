@@ -55,11 +55,24 @@ class SolicitudReservasController < ApplicationController
       product = Product.find(reserva['product_id'])
       params_reserva = reserva.compact
 
-      if product.stock_disponible < params_reserva['productos_solicitados']
-        return redirect_to("#{current_user.link_generar_reserva}", notice: "La cantidad solicitada ya no se encuentra disponible. Intentelo nuevamente de acuerdo a los nuevos valores de disponibilidad") 
+      # if product.stock_disponible < params_reserva['productos_solicitados']
+      #   return redirect_to("#{current_user.link_generar_reserva}", notice: "La cantidad solicitada ya no se encuentra disponible. Intentelo nuevamente de acuerdo a los nuevos valores de disponibilidad") 
+      # end
+
+
+      stock_disponible = product.stock_disponible
+      productos_solicitados = reserva["productos_solicitados"]
+
+      cantidad_faltante = stock_disponible - productos_solicitados
+
+      if cantidad_faltante < 0
+        provider_request = ProviderRequest.new(cantidad: (cantidad_faltante *-1 ) )
+        params_reserva['productos_solicitados'] = stock_disponible
       end
 
       reserva = SolicitudReserva.create(params_reserva)
+      provider_request.update(solicitud_reserva_id: reserva.id)
+
     end    
     redirect_to "#{current_user.link_after_reservar}?alert=reserva_exitosa"
 

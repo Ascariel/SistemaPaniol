@@ -1,6 +1,8 @@
 class SolicitudReserva < ApplicationRecord
   belongs_to :user
   belongs_to :product
+  has_one :provider_request
+
   enum estado: [:pendiente, :aprobada, :prestado, :finalizada, :rechazada, :cancelada, :morosa]
 
   before_save :actualizar_fecha_termino
