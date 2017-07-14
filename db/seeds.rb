@@ -32,6 +32,11 @@ user = User.create(email: "asaravia@outlook.com", rut: "13549965-0", nombre: "Mi
 
 
 
+p1 = Provider.create nombre: "Proveedor 1"
+p2 = Provider.create nombre: "Proveedor 2"
+p3 = Provider.create nombre: "Proveedor 3"
+p4 = Provider.create nombre: "Proveedor 4"
+p5 = Provider.create nombre: "Proveedor 5"
 
 
 
@@ -39,7 +44,7 @@ user = User.create(email: "asaravia@outlook.com", rut: "13549965-0", nombre: "Mi
 # user = User.create(email: "pablocangas@gmail.com", rut: "admin", nombre: "Admin", apellido: "Apellido Admin", rol: "admin", password: "passpass", password_confirmation: "passpass", confirmed_at: Date.current, confirmation_sent_at: Date.current )
 # user = User.create(email: "pablo@propertysimple.com", rut: "alumno", nombre: "Alumno", apellido: "Apellido Alumno", rol: "alumno", password: "passpass", password_confirmation: "passpass", confirmed_at: Date.current, confirmation_sent_at: Date.current )
 
-category = Category.create(nombre: "Libros", descripcion: "Coleccion de libros fisicos")
+category = Category.create(nombre: "Libros", descripcion: "Coleccion de libros fisicos", provider_id: p1.id)
 
 product = Product.create(nombre: "Data Center", descripcion: "Base de Datos", category_id: category.id)
 product = Product.create(nombre: "Big Data", descripcion: "Base de Datos", category_id: category.id)
@@ -53,7 +58,7 @@ product = Product.create(nombre: "Rails", descripcion: "Lenguajes de Programaci�
 product = Product.create(nombre: "JQuery Mobile", descripcion: "Android", category_id: category.id)
 
 
-category2 = Category.create(nombre: "Audiovisual", descripcion: "Coleccion de articulos de tecnologia")
+category2 = Category.create(nombre: "Audiovisual", descripcion: "Coleccion de articulos de tecnologia", provider_id: p2.id)
 
 product = Product.create(nombre: "Notebook Celeron 240 GB", descripcion: "Computador portátil", category_id: category2.id)
 product = Product.create(nombre: "Notebook HP i3-500U", descripcion: "Computador portátil", category_id: category2.id)
@@ -67,7 +72,7 @@ product = Product.create(nombre: "Proyector LED Asus H320-A", descripcion: "Prot
 product = Product.create(nombre: "Proyector LED Asus WVGA", descripcion: "Protector portatil", category_id: category2.id)
 
 
-category3 = Category.create(nombre: "Materiales", descripcion: "Artículos de librería")
+category3 = Category.create(nombre: "Materiales", descripcion: "Artículos de librería", provider_id: p3.id)
 
 product = Product.create(nombre: "Calculadora Casio", descripcion: "Calculadora científica", category_id: category3.id)
 product = Product.create(nombre: "Regla Artel 1mt", descripcion: "Reglas metálicas", category_id: category3.id)
@@ -75,19 +80,18 @@ product = Product.create(nombre: "Tijeras Mundial", descripcion: "Tisjeras para 
 product = Product.create(nombre: "Stic-fix", descripcion: "Pegamento en barra", category_id: category3.id)
 
 
-category4 = Category.create(nombre: "Papelería", descripcion: "Variedad de papeles para trabajos")
+category4 = Category.create(nombre: "Papelería", descripcion: "Variedad de papeles para trabajos", provider_id: p4.id)
 
 product = Product.create(nombre: "Resma Artel 500", descripcion: "Papel multiuso impresoras", category_id: category4.id)
 product = Product.create(nombre: "Papel Craft", descripcion: "Papel café para presentaciones", category_id: category4.id)
 product = Product.create(nombre: "Cartulinas Artel - Colores", descripcion: "Papel de colores multiuso", category_id: category4.id)
 
 
-category5 = Category.create(nombre: "Multimedia", descripcion: "Información en formato Multimedia")
+category5 = Category.create(nombre: "Multimedia", descripcion: "Información en formato Multimedia", provider_id: p5.id)
 
 product = Product.create(nombre: "Segunda Guerra Mundial", descripcion: "DVD Documental Histórico", category_id: category5.id)
 product = Product.create(nombre: "Conspiraciones en la historia", descripcion: "DVD Documental Histórico", category_id: category5.id)
 product = Product.create(nombre: "El Cosmos", descripcion: "DVD Documental Astronómico", category_id: category5.id)
 product = Product.create(nombre: "Game of Thrones T 1-2-3", descripcion: "DVD Serie ficción", category_id: category5.id)
-
 
 
